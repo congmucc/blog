@@ -1,3 +1,36 @@
+## blog备份
+
+
+
+### 安装依赖
+
+```
+pnpm install
+```
+
+
+
+### 打包
+
+```
+pnpm build
+```
+
+> 打包目录为.vitpress/dist
+
+
+
+nginx配置目录，记得需要先下载nginx容器
+
+```dockerfile
+docker run --name nginx --restart=always -p 443:443 -p 80:80 -d -v /usr/local/nginx/nginx.conf:/etc/nginx/nginx.conf -v /usr/local/nginx/cert:/etc/nginx/cert -v /usr/local/dist:/usr/local/dist --privileged=true nginx
+```
+
+
+
+nginx.conf
+
+```nginx
 
 events {
     worker_connections  1024;
@@ -44,3 +77,10 @@ server {
         rewrite ^(.*)$	https://$host$1	permanent;
     }
 }
+
+```
+
+
+
+
+
