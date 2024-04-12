@@ -13,7 +13,7 @@ export const navLinks = [
       { text: "苍穹外卖", link: "/project/苍穹外卖" },
       { text: "党务修改", link: "/project/党务修改" },
       { text: "构建项目", link: "/project/构建项目" },
-      { text: "前端项目笔记", link: "/project/前端项目笔记" },
+      { text: "前端项目笔记", link: "/project/前端项目笔记/前端项目笔记" },
       { text: "vue3大事件项目总结", link: "project/vue3大事件项目总结" },
     ],
   },

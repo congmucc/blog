@@ -6,7 +6,7 @@
 
 前端的项目包含有：
 - [uniapp电商项目](../project/uniapp电商项目/uniapp电商项目.md)
-- [前端项目笔记（后台管理系统，包含数据大屏）](../project/前端项目笔记.md)
+- [前端项目笔记（后台管理系统，包含数据大屏）](../project/前端项目笔记/前端项目笔记.md)
 - [vue3大事件总结](../project/vue3大事件项目总结.md)
 ::: info
 前端的技术主要是从项目中学习，更完整的笔记可以去[github前端](https://github.com/congmucc/Learning_Note/tree/main/02-Code/%E5%9F%BA%E7%A1%80/%E5%89%8D%E7%AB%AF)。
