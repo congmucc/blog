@@ -1,10 +1,10 @@
 # Centos7 学习笔记
 
-## 1 前置条件
+# 1 前置条件
 
 > 背景：
 >
-> ​ 安装 Vmware 下载 Centos7
+>  安装 Vmware 下载 Centos7
 >
 > 视频： [3 天搞定 Linux，1 天搞定 Shell，清华学神带你通关](https://www.bilibili.com/video/BV1WY4y1H7d3/?p=11&share_source=copy_web&vd_source=a9e0245042931de24eb0a8f018fa0eae)
 >
@@ -24,31 +24,33 @@
 
 1.  **安装 Linux**
 
-2.  **网卡设置**
+2. **网卡设置**
 
-    > 修改网络初始化配置，设定网卡在系统启动时 ip 初始化
-    >
-    > ```
-    > cd /              进入根目录
-    > cd etc            进入etc目录
-    > cd sysconfig      进入sysconfig目录
-    > cd network-scipts 进入network-scripts目录
-    > vi ifcfg-ens33    编辑ifcfg-ens33文件
-    >
-    > vi /etc/sysconfig/network-scripts/ifcfg-ens33
-    >
-    > i进入编辑区
-    > 将ONBOOT=no改为yes
-    > [esc] :wq保存退出
-    > ```
-    >
-    > 然后进行重启，使用`ip addr`查看 ip 地址
+   > 修改网络初始化配置，设定网卡在系统启动时 ip 初始化
+   >
+   > ```
+   > cd /              进入根目录
+   > cd etc            进入etc目录
+   > cd sysconfig      进入sysconfig目录
+   > cd network-scipts 进入network-scripts目录
+   > vi ifcfg-ens33    编辑ifcfg-ens33文件
+   > 
+   > vi /etc/sysconfig/network-scripts/ifcfg-ens33
+   > 
+   > i进入编辑区
+   > 将ONBOOT=no改为yes
+   > [esc] :wq保存退出
+   > ```
+   >
+   > `systemctl restart network`
+   >
+   > 然后进行重启，使用`ip addr`查看 ip 地址
 
 3.  **安装 SSH 连接工具**
 
     > 背景：
     >
-    > ​ SSH，建立在应用层基础上的安全协议
+    >  SSH，建立在应用层基础上的安全协议
     >
     > 常用的 SSH 连接工具
     >
@@ -57,7 +59,7 @@
     > - xshell
     > - finalshell
     >
-    > ​ 通过 SSH 连接工具就可以实现从本地连接到远程的 linux 服务器
+    >  通过 SSH 连接工具就可以实现从本地连接到远程的 linux 服务器
     >
     > 步骤：
     >
@@ -75,11 +77,11 @@
        > 3. 用户名和密码是自己设置的
        > 4. 接收并保存
 
-## 2 linux 常用命令：
+# 2 linux 常用命令：
 
-![image-20231116204344565](./assets/image-20231116204344565-1700138635093-1.png)
+![image-20231116204344565](assets/image-20231116204344565-1700138635093-1.png)
 
-### 2.1 Linux 命令初体验
+## 2.1 Linux 命令初体验 
 
 | 序号 | 命令           | 对应英文             |           作用           |
 | ---- | -------------- | -------------------- | :----------------------: |
@@ -90,7 +92,7 @@
 | 5    | mkdir [目录名] | make directory       |         创建目录         |
 | 6    | rm [文件名]    | remove               |       删除指定文件       |
 
-![image-20231116205238944](./assets/image-20231116205238944.png)
+![image-20231116205238944](assets/image-20231116205238944.png)
 
 - Linux 命令使用技巧：
 
@@ -101,59 +103,246 @@
 
 - **文件目录操作命令**
 
-  ![image-20231116220331581](./assets/image-20231116220331581.png)
+  ![image-20231116220331581](assets/image-20231116220331581.png)
 
-  ![image-20231116220659431](./assets/image-20231116220659431.png)
+  ![image-20231116220659431](assets/image-20231116220659431.png)
 
-  ![cat](./assets/image-20231116220819679.png)
+  ![cat](assets/image-20231116220819679.png)
 
-  ![more](./assets/image-20231116220905695.png)
+  ![more](assets/image-20231116220905695.png)
 
-  ![tail](./assets/image-20231116220940891.png)
+  ![tail](assets/image-20231116220940891.png)
 
-  ![mkdir](./assets/image-20231116221029727.png)
+  ![mkdir](assets/image-20231116221029727.png)
 
-  ![rmdir](./assets/image-20231116221145181.png)
+  ![rmdir](assets/image-20231116221145181.png)
 
-  ![rm](./assets/image-20231116221214570.png)
+  ![rm](assets/image-20231116221214570.png)
 
-### 2.2 拷贝移动命令
+## 2.2 拷贝移动命令 cp mv
 
-![cp](./assets/image-20231116221335374.png)
+![cp](assets/image-20231116221335374.png)
 
-![mv](./assets/image-20231116221501296.png)
+![mv](assets/image-20231116221501296.png)
 
-### 2.3 打包压缩命令
+## 2.3 打包压缩命令 tar
 
 > 这里常用命令为：zxvf 解压缩 zcvf 压缩
 
-![tar](./assets/image-20231116221546514.png)
+![tar](assets/image-20231116221546514.png)
 
-### 2.4 文本编辑命令
+## 2.4 文本编辑命令 vim
 
 > 前置：
 >
-> ​ Contos 中，安装 vim，yum install vim
+>  Contos 中，安装 vim，yum install vim
 
-![vim](./assets/image-20231116221949241.png)
+![vim](assets/image-20231116221949241.png)
 
-![image-20231116222415943](./assets/image-20231116222415943.png)
+![image-20231116222415943](assets/image-20231116222415943.png)
 
-![image-20231116222447244](./assets/image-20231116222447244.png)
+![image-20231116222447244](assets/image-20231116222447244.png)
 
-![image-20231116222504295](./assets/image-20231116222504295.png)
+![image-20231116222504295](assets/image-20231116222504295.png)
 
-![image-20231116222523455](./assets/image-20231116222523455.png)
+![image-20231116222523455](assets/image-20231116222523455.png)
 
-### 2.5 查找命令
+### 2.5.1 全局替换
 
-![find](./assets/image-20231116223005238.png)
+```shell
+%s/aaa/bbb/g
+```
 
-![grep](./assets/image-20231116223033784.png)
+`s` 替换
+`%` 全文
+`$` 最后一行
+`1` 第一行
+`g` global 就是在前面指定的行中替换所有匹配的字符串，如果不加这个就只匹配每一行中的第一个，此处还可以用`c` `p`
+`c` 每次替换前会确认
 
-## 3 软件安装
+### 2.5.2 搜索
 
-### 3.1 软件安装方式
+- `/`: **从光标向下搜索**，按下`n`，光标跳到下一个匹配的单词，按下`N`（`shift+n`）光标会跳到上一个匹配的单词。
+
+- `?`：与`/`相反，键入该符号后**反向向上搜索**
+- `*`：搜索当前光标所在单词，例如：如果当前光标所在单词是`set`，则相当于键入`/\<set\>`
+- `#`：搜索当前光标所在单词，相当于键入`?\<set\>`
+
+`/name`+enter即可
+
+
+
+
+## 2.5 查找命令 find grep
+
+![find](assets/image-20231116223005238.png)
+
+![grep](assets/image-20231116223033784.png)
+## 2.6 日志
+
+### 2.6.1 查看日志
+
+>   `tail -f log | grep "内容"`      查看日志
+ >  `ps -ef | grep "进程名字"`          查看正在运行的进程：
+   >`rpm -qa|grep mysql`              查询当前系统中安装的名称带mysql的软件
+
+### 2.6.2 生成日志
+
+- `> | >>`生成日志
+```bash
+docker logs -f id > test.log
+```
+>  注意`>`和`>>`的区别
+`>`写入，覆盖掉原有的
+`>>`继续添加，原来的还有
+
+## 2.7 防火墙
+
+- **服务配置**
+
+  - 启动服务：`systemctl start firewalld`
+  - 关闭服务：`systemctl stop firewalld`
+
+  - 重启服务：`systemctl restart firewalld`
+
+  - 查看服务状态：`systemctl status firewalld`
+
+  - 开机自启服务：`systemctl enable firewalld`
+
+  - 开机禁用服务：`systemctl disable firewalld`
+
+  - 查看是否开机自启：`systemctl is-enable firewalld`
+
+  - 查看已启动的服务列表：`systemctl list-unit-files | grep enabled`
+
+  - 查看启动失败的服务列表：`systemctl --failed`
+
+- **规则配置**
+
+  - 查看版本：`firewall-cmd --version`
+
+  - 查看帮助：`firewall-cmd --help`
+
+  - 查看状态：`firewall-cmd --state`
+
+  - 查看所有打开的端口：`firewall-cmd --list-ports`
+
+  - 查看所有规则：`firewall-cmd --list-all`
+
+  - **重载规则(每次执行之后都要重新)**：`firewall-cmd --reload`
+
+  - 查看区域信息：`firewall-cmd --get-active-zones`
+
+  - 查看指定接口所属区域： `firewall-cmd --get-zone-of-interface=enp4s0`
+
+  - 拒绝所有包：`firewall-cmd --panic-on`
+
+  - 取消拒绝所有包： `firewall-cmd --panic-off`
+
+  - 查看是否拒绝： `firewall-cmd --query-panic`
+
+- **端口规则**
+
+  - 添加端口：`firewall-cmd --add-port=80/tcp --permanent`
+  - 移除端口：`firewall-cmd --remove-port=80/tcp --permanent`
+  - 查看端口状态：`firewall-cmd --zone=public --query-port=80/tcp`
+
+- **端口转发**
+
+  - 开启防火墙伪装:`firewall-cmd --add-masquerade --permanent`//开启后才能转发端口
+  - **将本机80端口转发到192.168.1.1的8080端口上**
+  - 添加转发规则：`firewall-cmd --add-forward-port=port=80:proto=tcp:toport=8080:toaddr=192.168.1.1 --permanent`
+  - 删除转发规则：`firewall-cmd --remove-forward-port=port=80:proto=tcp:toport=8080:toaddr=192.168.1.1 --permanent`
+
+![防火墙](assets/image-20231116233121923.png)
+
+
+   > 注意:
+   > 1、`systemctl`是管理 Linux 中服务的命令，可以对服务进行启动、停止、重启、查看状态等操作
+   > 2、`firewall-cmd`是 Linux 中专门用于控制防火墙的命令
+   > 3、为了保证系统安全，服务器的防火墙不建议关闭
+
+## 2.8 其他命令
+
+### 2.8.1 查看目录的真实大小 du
+
+- `du -sh 路径`: 看当前目录下的所有文件的真实大小
+
+### 2.8.2 查看磁盘占用率 df
+
+- `df -h 路径`：查看磁盘占用率，这里是不写路径默认是`/`
+
+- `df -i 路径`: 查看iNode磁盘占用率
+
+### 2.8.3 网卡操作 ethtool 
+
+首先使用命令`ip addr`获取所有网卡，`eth0`是本机网卡
+其次使用命令`ethtool  eth0`获取本机网卡情况即可
+使用命令`cat /etc/sysconfig/network-scripts/ifcfg-eth0`
+
+
+
+### 2.8.4 测试接口操作 curl
+
+> 可以直接在linux服务器上面用 telnet IP 端口 命令看看端口通不通，或者用curl命令看看url地址能不能访问
+
+```shell
+curl -X POST http://192.168.1.1:8083/kfpt/openapi/getApiToken
+```
+
+> 这个curl具体搜搜一下就行了
+
+```shell
+curl http://192.168.1.1/OneMapServer/rest/services/sat_2013/MapServer
+```
+
+```sh
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/Users/appleboy/test.zip" \
+  -H "Content-Type: multipart/form-data"
+```
+
+> 这个可以上传一个文件
+
+```shell
+ping 192.168.1.1
+```
+
+
+
+```shell
+telnet 192.168.1.1 80
+```
+
+
+
+
+
+### 2.8.5 端口操作 lsof
+
+`lsof -i:8000` 用`lsof`命令查看监听端口
+
+使用 `lsof -i:端口号` 可以获得所有在指定端口号上打开的文件
+
+使用 `lsof -i TCP/UDP` 列出使用了TCP 或 UDP 协议的文件
+
+使用 `lsof -i TCP:3306` 列出使用了TCP 协议并且端口为3306的文件
+
+使用 `lsof -i TCP:1-1024` 列出使用了TCP协议并且端口范围为 1 到 1024 的文件
+
+
+
+kill -9 `lsof -t -u tt`
+
+上述命令中，`lsof -u tt` 是列出`tt`用户所有打开的文件，加上 `-t` 选项之后表示结果只列出PID列，也就是进程ID列，其他列都忽略，前面的 `kill -9` 表示强制结束指定的进程ID
+
+
+
+
+
+# 3 软件安装
+
+## 3.1 软件安装方式
 
 - 二进制发布包安装
 
@@ -177,7 +366,7 @@
 
   > 软件以源码工程的形式发布，需要自己编译打包
 
-### 3.2 安装 jdk
+## 3.2 安装 jdk
 
 > 操作步骤:
 >
@@ -196,7 +385,7 @@
 >
 > 5. 检查安装是否成功，命令为**java -version**
 
-### 3.3 安装 Tomcat && 防火墙
+## 3.3 安装 Tomcat && 防火墙
 
 > 操作步骤:
 >
@@ -223,29 +412,11 @@
    >   - “|”在 Linux 中称为管道符，可以将前一个命令的结果输出给后一个命令作为输入
    >   - 使用 ps 命令查看进程时，经常配合管道符和查找命令 grep 一起使用，来查看特定进程
 
-   ![验证tomcat](./assets/image-20231116232004755.png)
+   ![验证tomcat](assets/image-20231116232004755.png)
 
 3. **关闭防火墙**
 
-   > 防火墙操作:
-   >
-   > **开启/关闭防火墙之后要进行立即生效命令**
-   >
-   > - 查看防火墙状态(`systemctl status firewalld、firewall-cmd --state`)
-   > - 暂时关闭防火墙(`systemctl stop firewalld`)
-   > - 永久关闭防火墙(`systemctl disable firewalld`)
-   > - 开启防火墙(`systemctl start firewalld`)
-   > - 开放指定端口(`firewall-cmd --zone=public --add-port=8080/tcp --permanent`)
-   > - 关闭指定端口(`firewall-cmd --zone=public --remove-port=8080/tcp --permanent`)
-   > - **立即生效**(`firewall-cmd --reload`)
-   > - 查看开放的端口(`firewall-cmd --zone=public --list-ports`)
-   >
-   > 注意:
-   > 1、`systemctl`是管理 Linux 中服务的命令，可以对服务进行启动、停止、重启、查看状态等操作
-   > 2、`firewall-cmd`是 Linux 中专门用于控制防火墙的命令
-   > 3、为了保证系统安全，服务器的防火墙不建议关闭
-
-   ![防火墙](./assets/image-20231116233121923.png)
+   ![防火墙](assets/image-20231116233121923.png)
 
 4. **停止 Tomcat**
 
@@ -258,15 +429,15 @@
    >   注意:
    >   kill 命令是 Linux 提供的用于结束进程的命令，-9 表示强制结束
 
-   ![停止Tomcat](./assets/image-20231116234236909.png)
+   ![停止Tomcat](assets/image-20231116234236909.png)
 
-### 3.4 安装 MySQL
+## 3.4 安装 MySQL
 
 > 背景：
 >
-> ​ 把步骤的前两步做了，之后跟着知乎来就行了，其实前两步都不用，但是这个流程是对的
+>  把步骤的前两步做了，之后跟着知乎来就行了，其实前两步都不用，但是这个流程是对的
 >
-> ​ [CentOS / Linux 安装 MySQL（超简单详细） - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/623778183)
+>  [CentOS / Linux 安装 MySQL（超简单详细） - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/623778183)
 >
 > 步骤：
 >
@@ -402,11 +573,11 @@
    >
    > 这里需要开放 3306 端口
 
-### 3.5 安装 lrzsz
+## 3.5 安装 lrzsz
 
 > 背景：
 >
-> ​ 这个 lrzsz 是将文件上传到 linux 的一个包 上传命令为`rz`
+>  这个 lrzsz 是将文件上传到 linux 的一个包 上传命令为`rz`
 >
 > 操作步骤:
 >
@@ -418,13 +589,13 @@
 >    RPM 包管理，能够从指定的服务器自动下载 RPM 包并目安装，可以自动处理依赖关系，并且一次安装所有依赖的软件包，无须
 >    繁琐地一次次下载、安装
 
-### 3.6 安装 Nginx
+## 3.6 安装 Nginx
 
-[Nginx](Nginx.md)
+[Nginx](../../前端/Nginx/Nginx.md)
 
-## 4 项目部署
+# 4 项目部署
 
-### 4.1 手动部署项目
+## 4.1 手动部署项目
 
 > 步骤:
 >
@@ -469,7 +640,7 @@
 
    > `ps -ef | grep 'java -jar'`
 
-#### 部署的一些话：
+### 部署的一些话：
 
 1. **安装 redis**
 
@@ -539,7 +710,7 @@
    >
    > 最主要的还是是否能看懂 nginx 的配置
 
-### 4.2 通过 Shell 脚本自动部署项目
+## 4.2 通过 Shell 脚本自动部署项目
 
 > 步骤:
 >

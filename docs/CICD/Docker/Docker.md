@@ -1,6 +1,3 @@
-[TOC]
-
-
 
 安装Docker
 
@@ -80,23 +77,23 @@ https://www.aliyun.com/
 
 在首页的产品中，找到阿里云的**容器镜像服务**：
 
-![img-1704995665976](assets/1704995665976-55.png)
+![img](./assets/1704995665976-55.png)
 
 点击后进入控制台：
 
-![img-1704995665976-56](assets/1704995665976-56.png)
+![img](./assets/1704995665976-56.png)
 
 首次可能需要选择立刻开通，然后进入控制台。
 
 ## 5.3.配置镜像加速
 
-找到**镜像工具**下的**镜像****加速器**：
+找到**镜像工具**下的**镜像加速器**：
 
-![img](assets/1704995665976-57.png)
+![img](./assets/1704995665976-57.png)
 
 页面向下滚动，即可找到配置的文档说明：
 
-![img](assets/1704995665976-58.png)
+![img](./assets/1704995665976-58.png)
 
 具体命令如下：
 
@@ -153,7 +150,7 @@ docker run -d \
 
 运行效果如图：
 
-![img](assets/1704995173611-13.png)
+![img](./assets/1704995173611-13.png)
 
 
 
@@ -187,7 +184,7 @@ Docker本身包含一个后台服务，我们可以利用Docker命令告诉Docke
 
 用一幅图标示如下：
 
-![image-20231121004426475](assets/image-20231121004426475.png)
+![image-20231121004426475](./assets/image-20231121004426475.png)
 
 暂时无法在飞书文档外展示此内容
 
@@ -239,27 +236,27 @@ https://docs.docker.com/engine/reference/commandline/cli/
 
 其中，比较常见的命令有：
 
-| **命令**       | **说明**                       | **文档地址**                                                 |
-| :------------- | :----------------------------- | :----------------------------------------------------------- |
-| docker pull    | 拉取镜像                       | [docker pull](https://docs.docker.com/engine/reference/commandline/pull/) |
-| docker push    | 推送镜像到DockerRegistry       | [docker push](https://docs.docker.com/engine/reference/commandline/push/) |
-| docker images  | 查看本地镜像                   | [docker images](https://docs.docker.com/engine/reference/commandline/images/) |
-| docker rmi     | 删除本地镜像                   | [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/) |
-| docker run     | 创建并运行容器（不能重复创建） | [docker run](https://docs.docker.com/engine/reference/commandline/run/) |
-| docker stop    | 停止指定容器                   | [docker stop](https://docs.docker.com/engine/reference/commandline/stop/) |
-| docker start   | 启动指定容器                   | [docker start](https://docs.docker.com/engine/reference/commandline/start/) |
-| docker restart | 重新启动容器                   | [docker restart](https://docs.docker.com/engine/reference/commandline/restart/) |
-| docker rm      | 删除指定容器                   | [docs.docker.com](https://docs.docker.com/engine/reference/commandline/rm/) |
-| docker ps -a   | 查看所有容器                   | [docker ps](https://docs.docker.com/engine/reference/commandline/ps/) |
-| docker logs    | 查看容器运行日志               | [docker logs](https://docs.docker.com/engine/reference/commandline/logs/) |
-| docker exec    | 进入容器                       | [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) |
-| docker save    | 保存镜像到本地压缩文件         | [docker save](https://docs.docker.com/engine/reference/commandline/save/) |
-| docker load    | 加载本地压缩文件到镜像         | [docker load](https://docs.docker.com/engine/reference/commandline/load/) |
-| docker inspect | 查看容器详细信息               | [docker inspect](https://docs.docker.com/engine/reference/commandline/inspect/) |
+| **命令**         | **说明**              | **文档地址**                                                                        |
+| :------------- | :------------------ | :------------------------------------------------------------------------------ |
+| docker pull    | 拉取镜像                | [docker pull](https://docs.docker.com/engine/reference/commandline/pull/)       |
+| docker push    | 推送镜像到DockerRegistry | [docker push](https://docs.docker.com/engine/reference/commandline/push/)       |
+| docker images  | 查看本地镜像              | [docker images](https://docs.docker.com/engine/reference/commandline/images/)   |
+| docker rmi     | 删除本地镜像              | [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/)         |
+| docker run     | 创建并运行容器（不能重复创建）     | [docker run](https://docs.docker.com/engine/reference/commandline/run/)         |
+| docker stop    | 停止指定容器              | [docker stop](https://docs.docker.com/engine/reference/commandline/stop/)       |
+| docker start   | 启动指定容器              | [docker start](https://docs.docker.com/engine/reference/commandline/start/)     |
+| docker restart | 重新启动容器              | [docker restart](https://docs.docker.com/engine/reference/commandline/restart/) |
+| docker rm      | 删除指定容器              | [docs.docker.com](https://docs.docker.com/engine/reference/commandline/rm/)     |
+| docker ps -a   | 查看所有容器              | [docker ps](https://docs.docker.com/engine/reference/commandline/ps/)           |
+| docker logs    | 查看容器运行日志            | [docker logs](https://docs.docker.com/engine/reference/commandline/logs/)       |
+| docker exec    | 进入容器                | [docker exec](https://docs.docker.com/engine/reference/commandline/exec/)       |
+| docker save    | 保存镜像到本地压缩文件         | [docker save](https://docs.docker.com/engine/reference/commandline/save/)       |
+| docker load    | 加载本地压缩文件到镜像         | [docker load](https://docs.docker.com/engine/reference/commandline/load/)       |
+| docker inspect | 查看容器详细信息            | [docker inspect](https://docs.docker.com/engine/reference/commandline/inspect/) |
 
 用一副图来表示这些命令的关系：
 
-![image-20231121004335179](assets/image-20231121004335179.png)
+![image-20231121004335179](./assets/image-20231121004335179.png)
 
 补充：
 
@@ -381,7 +378,7 @@ source /root/.bashrc
 
 但遗憾的是，容器运行的Nginx所有的文件都在容器内部。所以我们必须利用数据卷将两个目录与宿主机目录关联，方便我们操作。如图：
 
-![image-20240112014710461](assets/image-20240112014710461.png)
+![image-20240112014710461](./assets/image-20240112014710461.png)
 
 在上图中：
 
@@ -545,19 +542,19 @@ ls -l /var/lib/docker/volumes/29524ff09715d3688eae3f99803a2796558dbd00ca584a25a4
 
 在课前资料中已经准备好了mysql的`init`目录和`conf`目录：
 
-![img](assets/1704995116304-4.png)
+![img](./assets/1704995116304-4.png)
 
 以及对应的初始化SQL脚本和配置文件：
 
-![img](assets/1704995116299-1.png)
+![img](./assets/1704995116299-1.png)
 
-![img](assets/1704995116300-2.png)
+![img](./assets/1704995116300-2.png)
 
 其中，hm.cnf主要是配置了MySQL的默认编码，改为utf8mb4；而hmall.sql则是后面我们要用到的黑马商城项目的初始化SQL脚本。
 
 我们直接将整个mysql目录上传至虚拟机的`/root`目录下：
 
-![img](assets/1704995116300-3.png)
+![img](./assets/1704995116300-3.png)
 
 接下来，我们演示本地目录挂载：
 
@@ -684,7 +681,7 @@ show tables;
 
 例如，第一步中需要的Linux运行环境，通用性就很强，所以Docker官方就制作了这样的只包含Linux运行环境的镜像。我们在制作java镜像时，就无需重复制作，直接使用Docker官方提供的CentOS或Ubuntu镜像作为基础镜像。然后再搭建其它层即可，这样逐层搭建，最终整个Java项目的镜像结构如图所示：
 
-![image-20240112014957376](assets/image-20240112014957376.png)
+![image-20240112014957376](./assets/image-20240112014957376.png)
 
 ### 2.3.2.Dockerfile
 
@@ -755,11 +752,11 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 
 在课前资料中，我们准备好了一个demo项目及对应的Dockerfile：
 
-![img](assets/1704995463338-16.png)
+![img](./assets/1704995463338-16.png)
 
 首先，我们将课前资料提供的`docker-demo.jar`包以及`Dockerfile`拷贝到虚拟机的`/root/demo`目录：
 
-![img](assets/1704995463339-17.png)
+![img](./assets/1704995463339-17.png)
 
 然后，执行命令，构建镜像：
 
@@ -785,7 +782,7 @@ docker build -t docker-demo:1.0 .
 
 结果：
 
-![img](assets/1704995463339-18.png)
+![img](./assets/1704995463339-18.png)
 
 查看镜像列表：
 
@@ -910,6 +907,8 @@ OK，现在无需记住IP地址也可以实现容器互联了。
 - 在自定义网络中，可以给容器起多个别名，默认的别名是容器名本身
 - 在同一个自定义网络中的容器，可以通过别名互相访问
 
+
+
 # 3.项目部署
 
 好了，我们已经熟悉了Docker的基本用法，接下来可以尝试部署项目了。
@@ -943,35 +942,35 @@ mysql容器中已经准备好了商城的数据，所以就不再删除了。
 
 `hmall`项目是一个maven聚合项目，使用IDEA打开`hmall`项目，查看项目结构如图：
 
-![img](assets/1704995492018-25.png)
+![img](./assets/1704995492018-25.png)
 
 我们要部署的就是其中的`hm-service`，其中的配置文件采用了多环境的方式：
 
-![img](assets/1704995492018-26.png)
+![img](./assets/1704995492018-26.png)
 
 其中的`application-dev.yaml`是部署到开发环境的配置，`application-local.yaml`是本地运行时的配置。
 
 查看application.yaml，你会发现其中的JDBC地址并未写死，而是读取变量：
 
-![img](assets/1704995492018-27.png)
+![img](./assets/1704995492018-27.png)
 
 这两个变量在`application-dev.yaml`和`application-local.yaml`中并不相同：
 
-![img](assets/1704995492018-28.png)
+![img](./assets/1704995492018-28.png)
 
 在dev开发环境（也就是Docker部署时）采用了mysql作为地址，刚好是我们的mysql容器名，只要两者在一个网络，就一定能互相访问。
 
 我们将项目打包：
 
-![img](assets/1704995492018-29.png)
+![img](./assets/1704995492018-29.png)
 
 结果：
 
-![img](assets/1704995492018-30.png)
+![img](./assets/1704995492018-30.png)
 
 将`hm-service`目录下的`Dockerfile`和`hm-service/target`目录下的`hm-service.jar`一起上传到虚拟机的`root`目录：
 
-![img](assets/1704995503389-43.png)
+![img](./assets/1704995503389-43.png)
 
 部署项目：
 
@@ -998,7 +997,7 @@ docker run -d --name hmall --network hmall -p 8080:8080 hmall
 
 `hmall-portal`和`hmall-admin`是前端代码，需要基于nginx部署。在课前资料中已经给大家提供了nginx的部署目录：
 
-![img](assets/1704995524000-46.png)
+![img](./assets/1704995524000-46.png)
 
 其中：
 
@@ -1007,7 +1006,7 @@ docker run -d --name hmall --network hmall -p 8080:8080 hmall
 
 我们现在要做的就是把整个nginx目录上传到虚拟机的`/root`目录下：
 
-![img](assets/1704995524000-47.png)
+![img](./assets/1704995524000-47.png)
 
 然后创建nginx容器并完成两个挂载：
 
@@ -1034,7 +1033,7 @@ docker run -d \
 
 测试，通过浏览器访问：http://你的虚拟机ip:18080
 
-![img](assets/1704995524000-48.png)
+![img](./assets/1704995524000-48.png)
 
 ## 3.3.DockerCompose
 
@@ -1097,13 +1096,13 @@ networks:
 
 对比如下：
 
-| **docker run 参数** | **docker compose 指令** | **说明**   |
-| :------------------ | :---------------------- | :--------- |
-| --name              | container_name          | 容器名称   |
-| -p                  | ports                   | 端口映射   |
-| -e                  | environment             | 环境变量   |
-| -v                  | volumes                 | 数据卷配置 |
-| --network           | networks                | 网络       |
+| **docker run 参数** | **docker compose 指令** | **说明** |
+| :---------------- | :-------------------- | :----- |
+| --name            | container_name        | 容器名称   |
+| -p                | ports                 | 端口映射   |
+| -e                | environment           | 环境变量   |
+| -v                | volumes               | 数据卷配置  |
+| --network         | networks              | 网络     |
 
 明白了其中的对应关系，相信编写`docker-compose`文件应该难不倒大家。
 
@@ -1170,19 +1169,19 @@ docker compose [OPTIONS] [COMMAND]
 
 其中，OPTIONS和COMMAND都是可选参数，比较常见的有：
 
-| **类型** | **参数或指令**                                               | **说明**                    |
-| :------- | :----------------------------------------------------------- | :-------------------------- |
-| Options  | -f                                                           | 指定compose文件的路径和名称 |
-| -p       | 指定project名称。project就是当前compose文件中设置的多个service的集合，是逻辑概念 |                             |
-| Commands | up                                                           | 创建并启动所有service容器   |
-| down     | 停止并移除所有容器、网络                                     |                             |
-| ps       | 列出所有启动的容器                                           |                             |
-| logs     | 查看指定容器的日志                                           |                             |
-| stop     | 停止容器                                                     |                             |
-| start    | 启动容器                                                     |                             |
-| restart  | 重启容器                                                     |                             |
-| top      | 查看运行的进程                                               |                             |
-| exec     | 在指定的运行中容器中执行命令                                 |                             |
+| **类型**   | **参数或指令** | **说明**                                                 |
+| :------- | :-------- | :----------------------------------------------------- |
+| Options  | -f        | 指定compose文件的路径和名称                                      |
+|          | -p        | 指定project名称。project就是当前compose文件中设置的多个service的集合，是逻辑概念 |
+| Commands | up        | 创建并启动所有service容器                                       |
+|          | down      | 停止并移除所有容器、网络                                           |
+|          | ps        | 列出所有启动的容器                                              |
+|          | logs      | 查看指定容器的日志                                              |
+|          | stop      | 停止容器                                                   |
+|          | start     | 启动容器                                                   |
+|          | restart   | 重启容器                                                   |
+|          | top       | 查看运行的进程                                                |
+|          | exec      | 在指定的运行中容器中执行命令                                         |
 
 教学演示：
 
@@ -1243,6 +1242,120 @@ nginx               nginx               "/docker-entrypoint.…"   nginx        
 打开浏览器，访问：http://yourIp:8080
 
 
+
+
+
+## 3.4将镜像发布到私人仓库
+
+1. **创建目录**
+
+   配置Docker私有仓库：
+
+   - 创建一个用于存储仓库数据的目录，例如/data/docker-registry。
+   - 创建一个名为docker-compose.yml的文件，并在其中定义Docker私有仓库的配置。示例配置如下：
+
+   ```dockerfile
+   version: '3'
+   services:
+     registry:
+       container_name:docker-registry
+       image: registry:2
+       ports:
+         - 5000:5000
+       volumes:
+         - /data/docker-registry:/var/lib/registry
+   ```
+
+   使用命令
+
+   ```shell
+   docker compose [-f xxx.yml] up -d
+   ```
+
+   > 如果文件名字不是docker-compose.yml 那就使用括号里面得命令
+
+2. **设置私有仓库的用户名和密码**
+
+   1、使用httpd-tools软件包中的htpasswd工具来生成加密密码
+
+   ```shell
+   yum install httpd-tools
+   # 生成密码文件
+   htpasswd -Bc auth.htpasswd <用户名>
+   ```
+
+   > 这里是登录的用户名
+
+   2、访问方式：（第三方服务器）
+
+   ```shell
+   docker login 192.168.65.78:5000
+   ```
+
+   > 之后输入用户名和密码就行了。
+   >
+   > 端口是上面定义的镜像5000端口，ip是部署registry的服务器ip。
+
+   3、配置 Docker Daemon:（这个是需要在部署registry的服务器配的）
+
+   ```shell
+   vim /etc/docker/daemon.json
+   # 将<私有仓库地址〉替换为实际的私有仓库地址
+   
+   {
+   	"registry-mirrors": ["https://jbw52uwf.mirror.aliyuncs.com"],"insecure-registries": ["192.168.65.78:5000"]
+   }
+   ```
+
+   > 和上面的一样，自己的ip和端口
+
+   4、重启 Docker Daemon:
+
+   ```shell
+   systemctl daemon-reload && systemctl restart docker
+   
+   # 还需要重启registry服务
+   docker restart registry:2 # 这里镜像名字是上面设置的
+   ```
+
+3. **将镜像上传到私有仓库**
+
+   两种方式
+
+   > 这里都是第三方服务器下上传的
+   >
+   > - compose打包的时候就指定仓库地址
+   >
+   > - login然后再进行改名字提交
+
+   1、第一种compose打包的时候就指定仓库地址
+
+   ```shell
+   docker login 192.168.65.78:5000
+   
+   docker build -t 192.168.65.78:5000/mall-member:0.0.5 .
+   
+   docker push 192.168.65.78:5000/mall-member:0.0.5 
+   ```
+
+   
+
+   2、第二种然后再进行改名字提交
+
+   ```shell
+   docker login 192.168.65.78:5000
+   
+   
+   # 这里是将 server/security-auth-service:v1 改为192.168.65.78:5000/server/security-auth-service:v1
+   # 也就是将名字改为 ip:port/镜像名字:版本
+   docker tag server/security-auth-service:v1 192.168.65.78:5000/server/security-auth-service:v1
+   
+   
+   docker push 192.168.65.78:5000/server/security-auth-service:v1
+   
+   ```
+
+   
 
 
 
@@ -1325,9 +1438,9 @@ nginx               nginx               "/docker-entrypoint.…"   nginx        
     >    > ```
     >    > # 主库数据源
     >    > master:
-    >    > url: jdbc:mysql://mysql:3306/ry-vue?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-    >    > username: root
-    >    > password: 123456
+    >    >  url: jdbc:mysql://mysql:3306/ry-vue?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    >    >  username: root
+    >    >  password: 123456
     >    > ```
     >    >
     >    > > 这里 `jdbc:mysql://localhost:3306`修改为` jdbc:mysql://mysql:3306` `mysql`是运行的容器名
@@ -1338,16 +1451,16 @@ nginx               nginx               "/docker-entrypoint.…"   nginx        
     >
     >    > ```
     >    > redis:
-    >    > # 地址
-    >    > host: redis
-    >    > # 端口，默认为6379
-    >    > port: 6379
-    >    > # 数据库索引
-    >    > database: 0
-    >    > # 密码
-    >    > password: 123456
-    >    > # 连接超时时间
-    >    > timeout: 10s
+    >    >   # 地址
+    >    >   host: redis
+    >    >   # 端口，默认为6379
+    >    >   port: 6379
+    >    >   # 数据库索引
+    >    >   database: 0
+    >    >   # 密码
+    >    >   password: 123456
+    >    >   # 连接超时时间
+    >    >   timeout: 10s
     >    > ```
     >    >
     >    > > 这里`host： localhost`修改为`host: redis` redis也是主机名
@@ -1389,25 +1502,25 @@ nginx               nginx               "/docker-entrypoint.…"   nginx        
     >   docker run --name ruoyijava -p 8080:8080 -d ruoyi
     >   ```
     >
-    > 
+    >   
     >
     >   ```
-    > docker run --name ruoyijava -p 8080:8080 --network 网络名 -d ruoyi
+    >   docker run --name ruoyijava -p 8080:8080 --network 网络名 -d ruoyi
     >   ```
     >
-    > 
+    >   
     >
     >   > 如果含有字体库这种的需要下载的库，下载不上，可以在宿主机上下载之后与子容器进行挂载，
     >   >
     >   > ```
     >   > yum install fontconfig
-    >   > docker run --name ruoyijava -p 8080:8080 --network ruoyinet -v /usr/share/fonts:/usr/share/fonts -d ruoyi
+    >   >  docker run --name ruoyijava -p 8080:8080 --network ruoyinet -v /usr/share/fonts:/usr/share/fonts -d ruoyi
     >   > ```
     >   >
     >   > > -v 进行挂载了，这里直接将宿主机下载的复制到子容器中了
     >
     >   - 使用`docker logs -f ruoyijava` 查看他的日志
-
+    
     
 
 
@@ -1436,28 +1549,28 @@ nginx               nginx               "/docker-entrypoint.…"   nginx        
    > worker_processes  1;
    > 
    > events {
-   >  worker_connections  1024;
+   >     worker_connections  1024;
    > }
    > 
    > http {
-   >  include       mime.types;
-   >  default_type  application/octet-stream;
-   >  sendfile        on;
-   >  keepalive_timeout  65;
+   >     include       mime.types;
+   >     default_type  application/octet-stream;
+   >     sendfile        on;
+   >     keepalive_timeout  65;
    > 
-   >  server {
-   >      listen       80;
-   >      # 这里需要修改
-   >      server_name  182.92.106.165;
+   >     server {
+   >         listen       80;
+   >         # 这里需要修改
+   >         server_name  182.92.106.165;
    > 		charset utf-8;
    > 
    > 		location / {
    > 		    # 这里需要修改
-   >          root   /usr/local/dist;
+   >             root   /usr/local/dist;
    > 			try_files $uri $uri/ /index.html;
-   >          index  index.html index.htm;
-   >      }
-   > 
+   >             index  index.html index.htm;
+   >         }
+   > 		
    > 		location /prod-api/ {
    > 			proxy_set_header Host $http_host;
    > 			proxy_set_header X-Real-IP $remote_addr;
@@ -1467,11 +1580,11 @@ nginx               nginx               "/docker-entrypoint.…"   nginx        
    > 			proxy_pass http://ruoyijava:8080/;
    > 		}
    > 
-   >      error_page   500 502 503 504  /50x.html;
-   >      location = /50x.html {
-   >          root   html;
-   >      }
-   >  }
+   >         error_page   500 502 503 504  /50x.html;
+   >         location = /50x.html {
+   >             root   html;
+   >         }
+   >     }
    > }
    > ```
    >
@@ -1483,7 +1596,7 @@ nginx               nginx               "/docker-entrypoint.…"   nginx        
    >
    > >  `/usr/local/dist`这个目录记得修改成自己的
    > >
-   > >  如果是多个端口，多加一个-p即可
+   > > 如果是多个端口，多加一个-p即可
 
 2. HTTPS
 

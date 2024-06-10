@@ -1,6 +1,6 @@
 # 0 项目搭建
 
-[uniapp搭建笔记](../../基础/前端/uniapp/uniapp.md)
+项目地址：[congmucc/uni-ts-shop: 这是uniapp+ts的小鲜兔商城前端开发 (github.com)](https://github.com/congmucc/uni-ts-shop)
 
 # 1 项目笔记
 

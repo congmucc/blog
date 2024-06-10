@@ -15,10 +15,8 @@ hero:
       link: /introduce/introduce
 
 features:
-  - title: 简洁
-    details: 这是一个非常简洁的博客，没有花里胡哨的东西，只有最简单的内容。
-  - title: 记录
-    details: 记录一些学习到的东西。
-  - title: 新奇
-    details: 研究一些新的东西
+  - title: 开始
+    details: 通过开始可以进行查看我的学习笔记以及本博客的使用方法
+  - title: 介绍
+    details: 介绍本人的一些情况以及一些附加的信息
 ---

@@ -11,12 +11,18 @@ export const navLinks = [
         link: "/project/uniapp电商项目/uniapp电商项目",
       },
       { text: "苍穹外卖", link: "/project/苍穹外卖" },
-      { text: "党务修改", link: "/project/党务修改" },
-      { text: "构建项目", link: "/project/构建项目" },
       { text: "前端项目笔记", link: "/project/前端项目笔记/前端项目笔记" },
-      { text: "vue3大事件项目总结", link: "project/vue3大事件项目总结" },
+      { text: "钱包项目", link: "/project/WEB3/钱包项目/钱包项目" },
     ],
   },
+  {
+    text:"SQL",
+    items:[
+      {text: "Mysql", link: "/SQL/Mysql/Mysql"},
+      {text: "Redis", link: "/SQL/Redis/Redis导学"}
+    ]
+  },
+
   {
     text: "微服务框架",
     items: [
@@ -29,31 +35,36 @@ export const navLinks = [
     ]
   },
   {
-    text:"SQL",
-    items:[
-      {text: "Mysql", link: "/SQL/Mysql/Mysql"},
-      {text: "Redis", link: "/SQL/Redis/Redis导学"}
-    ]
-  },
-  {
     text:"CICD",
     items: [
       { text: "Docker", link: "/CICD/Docker/Docker"},
+      {text: "K8s", link: "/CICD/K8s/K8s"},
       {text: "Jenkins", link: "/CICD/Jenkins/Jenkins"}
     ]
   },
   {
     text: "实用工具",
     items: [
-      { text: "Linux", link: "/tool/linux/linux" },
-      { text: "Git", link: "/tool/git/git" },
+      { text: "Linux", link: "/tool/Linux/Linux" },
+      { text: "Git", link: "/tool/Git/Git" },
     ],
   },
   {
-    text: "区块链",
+    text: "WEB3",
     items: [
-      { text: "Solidity", link: "/区块链/Basic/基础知识" },
-      { text: "Golang", link: "/区块链/Go/Golang基础" },
+      { text: "Solidity", link: "/WEB3/Solidity/Solidity" },
+      { text: "Geth", link: "/WEB3/基础知识/Geth/Geth" },
+      { text: "Mantle Network", link: "/WEB3/基础知识/Mantle Network/Mantle Network" },
+      { text: "WEB3基础", link: "/WEB3/基础知识/WEB3基础/WEB3基础" },
+    ],
+  },
+  {
+    text: "go生态",
+    items: [
+      { text: "Golang基础", link: "/Go/Golang基础/Golang基础" },
+      { text: "Gin", link: "/Go/框架/Gin/Gin" },
+      { text: "GoZero", link: "/Go/框架/GoZero/GoZero" },
+      { text: "GRPC", link: "/Go/框架/GRPC/GRPC" }
     ],
   }
 ];
