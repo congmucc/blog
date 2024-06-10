@@ -21,6 +21,18 @@ export default defineConfig({
       lazyLoading: true,
     },
   },
+  locales: {
+    // 默认语言
+    root: {
+      label: '简体中文',
+      lang: 'zh',
+    },
+    // 英文
+    en: {
+      label: 'English',
+      lang: 'en',
+    },
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/my-logo.svg',
