@@ -1,0 +1,24 @@
+---
+# https://vitepress.dev/reference/default-theme-home-page
+layout: home
+
+hero:
+  name: "congmu Blog"
+  text: "A Coder's Blog"
+  tagline: "Continuously Recording Learning"
+  actions:
+    - theme: brand
+      text: "Start"
+      link: /introduce/start
+    - theme: alt
+      text: "Introduction"
+      link: /introduce/introduction
+
+features:
+  - title: "Start"
+    details: "Access my learning notes and blog usage guide through Start."
+  - title: "Introduction"
+    details: "Learn more about me and find additional information."
+  - title: LANGUAGE
+    details: Currently, only the "Getting Started" and "Introduction" sections are available in English. The rest of the notes are not supported at this time. Apologies for the inconvenience.
+---
