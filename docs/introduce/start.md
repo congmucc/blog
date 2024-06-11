@@ -41,7 +41,7 @@ Github地址为：[note/02-Code/基础/后端 at main · congmucc/note (github.c
 - [前端项目笔记（后台管理系统，包含数据大屏）](../project/前端项目笔记/前端项目笔记.md)
 > 项目是Vue前端的一个后台管理模板的一个脚手架，着重项目的格式如Eslint，husky，commitlint，以及原生数据大屏的搭建。技术栈有Vue+TypeScripts+Echarts
 
-- [vue3大事件总结](../project/vue3大事件项目总结.md)
+- [vue3大事件总结](https://github.com/congmucc/note/blob/main/02-Code/%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/Java%2BVue/vue3%E5%A4%A7%E4%BA%8B%E4%BB%B6%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93.md)
 > 这是一个Vue的文章项目，使用JavaScript编写，主要是练习语法和Element-plus的使用
 
 - **党务修改**

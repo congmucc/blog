@@ -13,15 +13,15 @@ Here, the right side of the main page displays the table of contents for the cur
 # Project Introduction:
 
 ## WEB3 Projects
-- [Wallet Project](../project/WEB3/钱包项目/钱包项目.md)
+- [Wallet Project](../../project/WEB3/钱包项目/钱包项目.md)
 > This project is a MetaMask-like account system based on the ERC20 protocol. In the test network environment such as Sepolia, users can perform operations like transferring new tokens issued by the administrator and viewing information through this system.
 
 ## Backend Projects:
-- [Wenxun Headlines (Microservices + ES + Kafka)](../project/闻讯头条/闻讯头条.md)
+- [Wenxun Headlines (Microservices + ES + Kafka)](../../project/闻讯头条/闻讯头条.md)
 > This is a headline project modeled after China's Jinri Toutiao, modified for specific duties. Detailed responsibilities can be found in my resume or study notes.<br>
 Tech Stack: Java + SpringBoot + SpringCloud + Freemarker + Minio + ElasticSearch + Kafka/Stream + XXL-job + Redis + MySQL + MongoDB
 
-- [Cangqiong Takeaway (Maven Aggregation Monolithic Project)](../project/苍穹外卖.md)
+- [Cangqiong Takeaway (Maven Aggregation Monolithic Project)](../../project/苍穹外卖.md)
 > The highlight of this project is the AOP aspect-oriented programming and WeChat payment integration. The main technology used is Java.
 
 ::: details
@@ -31,13 +31,13 @@ Currently, my backend tech stack mainly includes Java and Go.
 :::
 
 ## Frontend Projects
-- [Uniapp E-commerce Project](../project/uniapp电商项目/uniapp电商项目.md)
+- [Uniapp E-commerce Project](../../project/uniapp电商项目/uniapp电商项目.md)
 > This project is a WeChat mini-program app based on Uniapp, mainly for learning purposes. The tech stack includes TypeScript.
 
-- [Frontend Project Notes (Admin System, Including Data Dashboard)](../project/前端项目笔记/前端项目笔记.md)
+- [Frontend Project Notes (Admin System, Including Data Dashboard)](../../project/前端项目笔记/前端项目笔记.md)
 > This project is a Vue frontend scaffold for an admin template, focusing on project formatting such as Eslint, Husky, Commitlint, and native data dashboard construction. The tech stack includes Vue + TypeScript + Echarts.
 
-- [Vue3 Major Events Summary](../project/vue3大事件项目总结.md)
+- [Vue3 Major Events Summary](https://github.com/congmucc/note/blob/main/02-Code/%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/Java%2BVue/vue3%E5%A4%A7%E4%BA%8B%E4%BB%B6%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93.md)
 > This is a Vue article project written in JavaScript, mainly for practicing syntax and using Element-plus.
 
 - **Party Affairs Modification**
