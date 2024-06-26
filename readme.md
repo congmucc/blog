@@ -32,6 +32,7 @@ nginx.conf
 
 ```nginx
 
+
 events {
     worker_connections  1024;
 }
@@ -54,7 +55,8 @@ http {
 server {
         listen       443 ssl;
         server_name  www.congmu.top congmu.top;
-        
+        index index.html        
+
         ssl on;
         ssl_certificate /etc/nginx/cert/congmu.top_bundle.crt;
         ssl_certificate_key /etc/nginx/cert/congmu.top.key;
@@ -65,10 +67,21 @@ server {
      
         location / {		
             root   /usr/local/dist/dist;
-            index  index.html index.htm;
-            try_files $uri $uri/ $uri.html /404.html;
+           
+            try_files $uri $uri.html $uri/ =404;
 
-            expires 1h;
+            # non existent pages
+            error_page 404 /404.html;
+
+            # a folder without index.html raises 403 in this setup
+            error_page 403 /404.html;
+        
+            # adjust caching headers
+            # files in the assets folder have hashes filenames
+            location ~* ^/assets/ {
+            	expires 1y;
+                add_header Cache-Control "public, immutable";
+            }
         }
     }
 server {
@@ -77,6 +90,8 @@ server {
         rewrite ^(.*)$	https://$host$1	permanent;
     }
 }
+
+
 
 ```
 
