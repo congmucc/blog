@@ -7,6 +7,9 @@ This is a personal study notes forum, maintained irregularly.
 ## Study Records
 My personal study records are generally:
 - Github contains my code and all my notes.
+
+![alt text](../../assets/github.png)
+
 - CSDN has the problems and solutions I encounter in my projects.
 - For details, please click on the **small icon in the upper right corner** for my [Github](https://github.com/congmucc/note) and [CSDN](https://blog.csdn.net/m0_73419038?type=blog).
 
@@ -17,6 +20,7 @@ My personal study records are generally:
 ### Backend
 - Golang
 - Java
+- Rust
 
 ### Frontend
 - Vue

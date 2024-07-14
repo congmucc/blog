@@ -8,6 +8,8 @@
 个人的学习记录一般是：
 - Github含有我的代码和所有笔记。
 
+![alt text](../assets//github.png)
+
 - CSDN有我平时项目中遇见的问题和解决方案。
 - 详情请点击**右上方小图标**我的[Github](https://github.com/congmucc/note)和[CSDN](https://blog.csdn.net/m0_73419038?type=blog)
 
@@ -18,6 +20,7 @@
 ### 后端
 - Golang
 - Java
+- Rust
 
 ### 前端
 - Vue

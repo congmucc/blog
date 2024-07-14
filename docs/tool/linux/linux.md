@@ -35,7 +35,7 @@
    > cd network-scipts 进入network-scripts目录
    > vi ifcfg-ens33    编辑ifcfg-ens33文件
    > 
-   > vi /etc/sysconfig/network-scripts/ifcfg-ens33
+   > `vi /etc/sysconfig/network-scripts/ifcfg-ens33`
    > 
    > i进入编辑区
    > 将ONBOOT=no改为yes
@@ -45,6 +45,98 @@
    > `systemctl restart network`
    >
    > 然后进行重启，使用`ip addr`查看 ip 地址
+   
+
+
+```sh
+# 备份系统旧配置文件   
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+
+# 使用curl下载阿里云yum源
+curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+
+# 清除原有yum缓存
+yum clean all
+    
+# 刷新缓存
+yum makecache
+
+# 更新yum
+yum update -y
+
+# 安装wget
+yum install -y wget
+```
+
+如果到`yum makecache`总是提示`Connection timed out after 30002 milliseconds') Trying other mirror，`
+
+```sh
+# 删除yum.repos.d目录下所有文件
+
+rm -f /etc/yum.repos.d/*
+
+# 然后重新下载阿里的：
+
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
+# 清理缓存：
+
+yum clean all
+
+# 测试下载安装：
+
+yum install gcc
+```
+
+解决方案是设置网络的DNS地址为这个_223.5.5.5：
+```
+vi /etc/sysconfig/network-scripts/ifcfg-ens33
+
+
+DNS1=114.114.114.114
+DNS2=223.5.5.5
+ 
+#重启网络
+service network restart
+
+```
+
+
+镜像站yum源链接
+阿里云
+https://developer.aliyun.com/mirror/centos
+
+腾讯云
+https://mirrors.cloud.tencent.com/help/centos.html
+
+华为云
+https://mirrors.huaweicloud.com/home
+
+网易云
+http://mirrors.163.com/.help/centos.html
+
+
+
+```sh
+一般的 Linux 系统都自带了 [cURL](https://curl.se/)，但是版本都不是最新的，有的时候我们可能要用最新的版本，但是使用 `yum update` 的时候又显示没有更新。今天给大家介绍一个 yum repo，可以更新到最新的 cURL 版本。
+
+**1、创建一个 repo 文件：**
+
+vi /etc/yum.repos.d/city-fan.repo
+
+**2、把以下内容复制到找个 repo 文件中：**
+
+[CityFan]
+name=City Fan Repo
+baseurl=http://www.city-fan.org/ftp/contrib/yum-repo/rhel$releasever/$basearch/
+enabled=1
+gpgcheck=0
+
+**3、运行 yum 更新：**
+
+yum clean all
+yum update curl
+```
 
 3.  **安装 SSH 连接工具**
 
@@ -81,16 +173,16 @@
 
 ![image-20231116204344565](assets/image-20231116204344565-1700138635093-1.png)
 
-## 2.1 Linux 命令初体验 
+## 2.1 Linux 常用命令 
 
-| 序号 | 命令           | 对应英文             |           作用           |
-| ---- | -------------- | -------------------- | :----------------------: |
-| 1    | ls             | list                 |   查看当前目录下的内容   |
-| 2    | pwd            | print work directory |     查看当前所在目录     |
-| 3    | cd [目录名]    | change directory     |         切换目录         |
-| 4    | touch [文件名] | touch                | 如果文件不存在，新建文件 |
-| 5    | mkdir [目录名] | make directory       |         创建目录         |
-| 6    | rm [文件名]    | remove               |       删除指定文件       |
+| 序号  | 命令          | 对应英文                 |      作用      |
+| --- | ----------- | -------------------- | :----------: |
+| 1   | ls          | list                 |  查看当前目录下的内容  |
+| 2   | pwd         | print work directory |   查看当前所在目录   |
+| 3   | cd [目录名]    | change directory     |     切换目录     |
+| 4   | touch [文件名] | touch                | 如果文件不存在，新建文件 |
+| 5   | mkdir [目录名] | make directory       |     创建目录     |
+| 6   | rm [文件名]    | remove               |    删除指定文件    |
 
 ![image-20231116205238944](assets/image-20231116205238944.png)
 
@@ -137,15 +229,38 @@
 >
 >  Contos 中，安装 vim，yum install vim
 
-![vim](assets/image-20231116221949241.png)
+**安装：**
 
-![image-20231116222415943](assets/image-20231116222415943.png)
+`yum install vim`
 
-![image-20231116222447244](assets/image-20231116222447244.png)
+1、在使用vim命令编辑文件时，如果指定的文件存在则直接打开此文件。如果指定的文件不存在则新建文件。
 
-![image-20231116222504295](assets/image-20231116222504295.png)
+2、vim在进行文本编辑时共分为三种模式，分别是**命令模式（Commandmode），插入模式（Insertmode）底行模式（Lastlinemode）**。这三种模式之间可以相互切换。我们在使用vim时一定要注意我们当前所处的是哪种模式。
 
-![image-20231116222523455](assets/image-20231116222523455.png)
+1、**命令模式**
+
+- 命令模式下可以查看文件内容、移动光标（上下左右箭头、99、G)
+- 通过vim命令打开文件后，默认进入命令模式
+- 另外两种模式需要首先进入命令模式，才能进入彼此
+- 命令模式下：
+  - `u`：撤销上一步操作
+  - `ctrl+r`：将原来的撤销重做一遍
+  - `U`：恢复一整行原来的面貌（文本打开时的状态）
+
+2、**插入模式**
+
+- 插入模式下可以对文件内容进行编辑
+- 在命令模式下按下[`i,a,o`]任意一个，可以进入插入模式。进入插入模式后，下方会出现【insert】字样
+- 在插入模式下按下ESC键，回到命令模式
+
+3、**底行模式**
+
+- 底行模式下可以通过命令对文件内容进行查找、显示行号、退出等操作
+- 在命令模式下按下[`:`,`/`]任意一个，可以进入底行模式
+- 通过`/`方式进入底行模式后，可以对文件内容进行查找
+- 通过`:`方式进入底行模式后，可以输入`wq`（保存并退出）、`q!`（不保存退出）、`set nu`（显示行号）、`set nu!`（隐藏行号）、`e!`（放弃修改，重新回到文件打开时的状态）
+
+
 
 ### 2.5.1 全局替换
 
@@ -169,6 +284,10 @@
 - `#`：搜索当前光标所在单词，相当于键入`?\<set\>`
 
 `/name`+enter即可
+
+
+
+
 
 
 
@@ -314,7 +433,11 @@ ping 192.168.1.1
 telnet 192.168.1.1 80
 ```
 
-
+> 使用快捷键：`CTRL+]` 显示欢迎页面
+>
+> 回车输入`/ `会有请求头提示信息。
+>
+> 使用quit退出
 
 
 
@@ -593,6 +716,41 @@ kill -9 `lsof -t -u tt`
 
 [Nginx](../../前端/Nginx/Nginx.md)
 
+
+
+## 3.7更新git和curl
+
+```sh
+# 安装End Point 存储库，这个可以让yum下载新的版本
+yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+
+# 安装git
+yum install git
+```
+
+
+```sh
+# 安装所需的软件包
+yum install wget gcc openssl-devel -y
+
+# 下载最新的cURL源–您可以参考其[官方下载页面](https://curl.se/download.html)以了解最新版本
+wget https://curl.se/download/curl-7.76.1.tar.gz
+
+
+# 解压 
+tar -zxvf curl-7.76.1.tar.gz 
+cd curl-7.76.1 
+./configure --with-ssl 
+make 
+make install
+```
+安装成功了，会被安装在/usr/local/bin/curl中。
+
+检查一下是否安装成功了。
+
+```bash
+curl --version
+```
 # 4 项目部署
 
 ## 4.1 手动部署项目

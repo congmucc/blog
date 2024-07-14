@@ -116,10 +116,37 @@ git config --global user.email "2562907972@qq.com"
 
 - `git fetch` 是一个Git命令，用于从远程仓库中下载最新的数据到本地仓库，但不自动合并到当前工作分支。这个命令使得你能查看远程仓库的最新状态，包括新的分支和标签，而无需直接修改你的工作目录或暂存区的内容。
 
-- 
+
+
+### 7 LF & CRLF
+
+在Windows平台上，git默认的core.autocrlf是true，可以通过`git config --list`命令查看。
+
+Git可以在你提交时自动地把行结束符CRLF转换成LF，而在签出代码时把LF转换成CRLF。用`core.autocrlf`来打开此项功能， 如果是在Windows系统上，把它设置成`true`（默认配置），这样当签出代码时，LF会被转换成CRLF：
+
+```csharp
+git config --global core.autocrlf true
+```
+
+Linux或Mac系统使用LF作为行结束符，因此你不想Git在签出文件时进行自动的转换；当一个以CRLF为行结束符的文件不小心被引入时你肯定想进行修正， 把`core.autocrlf`设置成input来告诉Git在提交时把CRLF转换成LF，签出时不转换：
+
+```verilog
+git config --global core.autocrlf input
+```
+
+这样会在Windows系统上的签出文件中保留CRLF，会在Mac和Linux系统上，包括仓库中保留LF。
+
+如果你是Windows程序员，且正在开发仅运行在Windows上的项目，可以设置`false`取消此功能，把回车符记录在库中：
+
+```csharp
+git config --global core.autocrlf false
+```
+
 
 
 # 7 实战
+
+## git stash
 
 背景：正在写代码的时候需要修改线上的一个bug
 
@@ -142,3 +169,61 @@ git config --global user.email "2562907972@qq.com"
 `git stash list`：查看所有的stash
 
 `git stash drop [名字]`：删除指定的stash工作目录
+
+
+
+
+
+## git cherry-pick
+
+
+
+```bash
+git cherry-pick <commitHash>
+```
+
+上面命令就会将指定的提交`commitHash`，应用于当前分支。这会在当前分支产生一个新的提交，当然它们的哈希值会不一样。
+
+举例来说，代码仓库有`master`和`feature`两个分支。
+
+> ```bash
+>     a - b - c - d   Master
+>          \
+>            e - f - g Feature
+> ```
+
+现在将提交`f`应用到`master`分支。
+
+> ```bash
+> # 切换到 master 分支
+> $ git checkout master
+> 
+> # Cherry pick 操作
+> $ git cherry-pick f
+> ```
+
+上面的操作完成以后，代码库就变成了下面的样子。
+
+> ```bash
+>     a - b - c - d - f   Master
+>          \
+>            e - f - g Feature
+> ```
+
+从上面可以看到，`master`分支的末尾增加了一个提交`f`。
+
+`git cherry-pick`命令的参数，不一定是提交的哈希值，分支名也是可以的，表示转移该分支的最新提交。
+
+> ```bash
+> $ git cherry-pick feature
+> ```
+
+上面代码表示将`feature`分支的最近一次提交，转移到当前分支。
+
+
+
+
+
+## git reset
+
+> Reset Current Branch to Here
