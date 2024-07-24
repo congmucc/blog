@@ -21,6 +21,21 @@ Here, the right side of the main page displays the table of contents for the cur
 > This is a headline project modeled after China's Jinri Toutiao, modified for specific duties. Detailed responsibilities can be found in my resume or study notes.<br>
 Tech Stack: Java + SpringBoot + SpringCloud + Freemarker + Minio + ElasticSearch + Kafka/Stream + XXL-job + Redis + MySQL + MongoDB
 
+> **Project Responsibilities**:
+
+> - Refactoring some high-concurrency scenarios.
+> - In a distributed retrieval scenario, use Elasticsearch to design the retrieval service, map articles, user indexes, and order indexes, and highlight keywords.
+> - Use Kafka for end-to-end communication, as middleware for buffering, and Kafka Stream for real-time computation of article popularity.
+> - For hot articles, use the Freemarker view rendering template engine to implement page staticization, deploy static resources to nginx servers to reduce the pressure on tomcat, and use Sentinel to throttle to cope with the basic high concurrency.
+> - When designing concurrent query APIs, Redis is used for caching hot data, multiple reads and low writes, and dictionary data to optimize query performance, and design expiration time and some general caching problems to deal with them.
+> - Use Redis to implement delayed tasks with distributed locks.
+> - Use MinIo to build a distributed file storage cluster to store project resources such as images.
+> - Use Mongo to asynchronously store search records for each user to guarantee high scalability and high-performance metrics for user hot data.
+> - In scheduled business scenarios, such as the scheduled computing hot article scenario, XXL-JOB is used to implement distributed scheduled task scheduling to resolve task conflicts on multiple servers.
+> - In-depth understanding of the business of articles, forms, etc.
+> - Deploy with DevOps automated deployments, combined with Jenkins for simple automated deployments.
+>
+
 - [Cangqiong Takeaway (Maven Aggregation Monolithic Project)](../../project/苍穹外卖.md)
 > The highlight of this project is the AOP aspect-oriented programming and WeChat payment integration. The main technology used is Java.
 

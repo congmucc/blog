@@ -21,7 +21,22 @@
 ## 后端项目：
 - [闻讯头条（微服务 + ES + Kafka）](../project/闻讯头条/闻讯头条.md)
 > 该项目是一个头条类的项目，是仿中国的今日头条进行改造而来，具体职责的话简历应该有写，或者学习笔记上有应该。<br>
-技术栈：Java + SpringBoot + SpringCloud + freemarker + Minio + ElasticSearch + kafka/Stream + xxl-job +Redis + Mysql + MongoDB
+技术栈：Java + SpringBoot + SpringCloud + freemarker + Minio + ElasticSearch + kafka/Stream + xxl-job +Redis + Mysql + MongoDB<br>
+
+> **项目职责**：
+
+> - 对一些高并发的场景进行重构设计。
+> - 在分布式检索场景中，使用Elasticsearch实现检索服务设计，对文章、用户索引、订单索引Mapping，并对关键字进行高亮处理。
+> - 运用Kafka完成端到端的通信，作为中间件进行缓冲，以及使用Kafka Stream进行文章热度的实时计算。
+> - 针对热点文章，使用Freemarker视图渲染模版引擎，实现页面静态化，将静态化资源部署到nginx服务器，降低对tomcat的压力，并使用Sentinel进行限流处理来应对基础高并发情况。
+> - 设计并发查询接口时，针对热点数据、读多写少、字典数据均使用Redis进行缓存，优化查询性能，并针对性的设计过期时间，以及一些常规的缓存问题进行处理；
+> - 运用Redis，结合分布式锁实现延时任务。
+> - 使用MinIo搭建分布式文件存储集群，存储图像等项目资源。
+> - 使用Mongo异步为每个用户存储搜索记录，以保证用户热数据高扩展和高性能指标。
+> - 在定时业务场景中，如定时计算热点文章业务场景中，使用XXL-JOB实现分布式定时任务调度来解决多服务器下的任务冲突。
+> - 对文章、表单等业务有深入的理解。
+> - 使用DevOps自动化部署进行部署，结合Jenkins进行简单的自动化部署。
+>
 
 - [苍穹外卖（maven聚合的单体项目）](../project/苍穹外卖.md)
 > 这个项目的亮点是具有aop切面思想和具有微信支付的业务，主要技术是Java

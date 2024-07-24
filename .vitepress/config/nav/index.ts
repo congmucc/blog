@@ -5,6 +5,7 @@ export const navLinks = [
   {
     text: "项目笔记",
     items: [
+      { text: "航天宏图", link: "/project/航天宏图/航天宏图" },
       { text: "闻讯头条", link: "/project/闻讯头条/闻讯头条" },
       {
         text: "uniapp电商项目",
