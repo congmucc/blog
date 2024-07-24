@@ -32,6 +32,8 @@ export const navLinks = [
       },
       { text: "Solidity", link: "/WEB3/Solidity/Solidity" },
       { text: "Move", link: "/WEB3/Move/Move"},
+      { text: "Solana Rust", link: "/WEB3/Solana Rust/Solana Rust"},
+      { text: "Rust", link: "/后端/Rust/Rust" },
       { text: "Ethersjs", link: "/WEB3/Ethersjs/Ethersjs" }
     ],
   },
@@ -46,13 +48,6 @@ export const navLinks = [
       { text: "GoMicro", link: "/后端/Go/框架/GoMicro/GoMicro" },
     ],
   },
-  {
-    text: "Rust",
-    items: [
-      { text: "Rust基础", link: "/后端/Rust/Rust" }
-    ],
-  },
-
   {
     text: "分布式",
     items: [
