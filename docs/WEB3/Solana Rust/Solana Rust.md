@@ -716,7 +716,7 @@ pub struct InitializeAccounts<'info> {
 
 2、InitializeAccounts结构体中有如下3种账户类型：
 
-2.1、 **Account类型**：它是AccountInfo类型的包装器，可用于验证账户所有权并将底层数据反序列化为Rust类型。对于结构体中的counter账户，Anchor 会实现如下功能：
+2.1、 **Account类型**：它是AccountInfo类型的包装器，**可用于验证账户所有权并将底层数据反序列化为Rust类型**。对于结构体中的counter账户，Anchor 会实现如下功能：
 
 ```rust
 pub pda_counter: Account<'info, Counter>,
@@ -727,13 +727,17 @@ pub pda_counter: Account<'info, Counter>,
 
 ② 检查传入的所有者是否跟 Counter 的所有者匹配。
 
-2.2、**Signer类型**：这个类型会检查给定的账户是否签署了交易，但并不做所有权的检查。只有在并不需要底层数据的情况下，才应该使用Signer类型。
+2.2、**Signer类型**：这个类型会检查给定的账户是否签署了交易，但并不做所有权的检查。只有在并不需要底层数据的情况下，才应该使用Signer类型。**表示这个账户是一个签名者，即它拥有进行交易或操作的权限。**
 
 ```rust
 pub user: Signer<'info>,
 ```
 
 2.3、**Program类型**：验证这个账户是个特定的程序。对于system_program 字段，Program 类型用于指定程序应该为系统程序，Anchor 会替我们完成校验。
+
+system_program 属性是用于执行Solana上的基本操作，**如账户的创建和管理。这个属性是程序与Solana系统级功能交互的桥梁。**
+
+`<'info> `确保这些引用在整个 **Initialize** 结构体的生命周期内都是有效的。这意味着，只要 **Initialize** 结构体存在，其中的账户数据就可以安全地被访问和使用。
 
 ```rust
 pub system_program: Program<'info, System>,
@@ -928,3 +932,611 @@ pub struct GuessingAccount {}
 我们要定义记录数据的结构体，也需要用 #[account] 标记为 Solana 的账户类型，这样就可以在链上存储游戏要记录的数字。
 
 > #[account] 将结构体定义为账户类型，使得结构体能够映射到区块链上的一个账户，存储所需的状态信息，并通过合约中的函数进行访问和修改，同时自动处理数据的序列化、反序列化和验证。
+
+
+
+
+
+```rust
+use anchor_lang::prelude::*;
+use solana_program::clock::Clock;
+
+declare_id!("11111111111111111111111111111111");
+
+#[program]
+pub mod anchor_bac {
+    use super::*;
+    use std::cmp::Ordering;
+
+    pub fn initialize(ctx: Context<AccountContext>) -> Result<()> {
+        let guessing_account = &mut ctx.accounts.guessing_account;
+        guessing_account.number = generate_random_number();
+        Ok(())
+    }
+
+    pub fn guess(ctx: Context<AccountContext>, number: u32) -> Result<()> {
+        let guessing_account = &mut ctx.accounts.guessing_account;
+        let target = guessing_account.number;
+
+        match number.cmp(&target) {
+            Ordering::Less => return err!(MyError::NumberTooSmall),
+            Ordering::Greater => {
+                return err!(MyError::NumberTooLarge);
+            }
+            Ordering::Equal => return Ok(()),
+        }
+    }
+}
+
+fn generate_random_number() -> u32 {
+    let clock = Clock::get().expect("Failed to get clock");
+    let last_digit = (clock.unix_timestamp % 10) as u8;
+    let result = (last_digit + 1) as u32;
+    result
+}
+
+#[account]
+pub struct GuessingAccount {
+    pub number: u32,
+}
+
+#[derive(Accounts)]
+pub struct AccountContext<'info> {
+    #[account(
+        init_if_needed,
+        space=32,
+        payer=payer,
+        seeds = [b"guessing pda"],
+        bump
+    )]
+    pub guessing_account: Account<'info, GuessingAccount>,
+
+    #[account(mut)]
+    pub payer: Signer<'info>,
+
+    pub system_program: Program<'info, System>,
+}
+
+#[error_code]
+pub enum MyError {
+    #[msg("Too small")]
+    NumberTooSmall,
+    #[msg("Too larget")]
+    NumberTooLarge,
+}
+```
+
+
+
+```ts
+const program = pg.program;
+const seeds = Buffer.from("guessing pda");
+const guessingPdaPubkey = anchor.web3.PublicKey.findProgramAddressSync(
+  [seeds],
+  program.programId
+);
+
+async function initialize() {
+  try {
+    const initializeTx = await program.methods
+      .initialize()
+      .accounts({
+        guessingAccount: guessingPdaPubkey[0],
+        payer: pg.wallet.publicKey,
+        systemProgram: web3.SystemProgram.programId,
+      })
+      .rpc();
+
+    console.log(
+      "Initialize successfully!\n Your transaction signature is:",
+      initializeTx
+    );
+  } catch (errors: any) {
+    console.log(errors);
+  }
+}
+
+async function guessing(number: number) {
+  try {
+    const guessingTx = await program.methods
+      .guess(number)
+      .accounts({
+        guessingAccount: guessingPdaPubkey[0],
+        payer: pg.wallet.publicKey,
+        systemProgram: web3.SystemProgram.programId,
+      })
+      .rpc();
+    console.log("Congratulation you're right!");
+  } catch (errors: any) {
+    console.log(errors.error.errorMessage);
+  }
+}
+
+// initialize();
+guessing(3);
+
+```
+
+
+
+
+
+- 带有权限验证的计数器项目
+
+```rust
+use anchor_lang::prelude::*;
+use std::ops::DerefMut;
+
+declare_id!("4rYU4LZNaM1smqPx3omxBrKkRdUEMQvfFoJ2F3nNYVv5");
+
+#[program]
+pub mod counter {
+    use super::*;
+
+    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+        let counter = ctx.accounts.counter.deref_mut();
+        let bump = ctx.bumps.counter;
+
+        *counter = Counter {
+            authority: *ctx.accounts.authority.key,
+            count: 0,
+            bump,
+        };
+
+        Ok(())
+    }
+
+    pub fn increment(ctx: Context<Increment>) -> Result<()> {
+        require_keys_eq!(
+            ctx.accounts.authority.key(),
+            ctx.accounts.counter.authority,
+            ErrorCode::Unauthorized
+        );
+
+        ctx.accounts.counter.count += 1;
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct Initialize<'info> {
+    #[account(
+        init,
+        payer = authority,
+        space = Counter::SIZE,
+        seeds = [b"counter"],
+        bump
+    )]
+    counter: Account<'info, Counter>,
+    #[account(mut)]
+    authority: Signer<'info>,
+    system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct Increment<'info> {
+    #[account(
+        mut,
+        seeds = [b"counter"],
+        bump = counter.bump
+    )]
+    counter: Account<'info, Counter>,
+    authority: Signer<'info>,
+}
+
+#[account]
+pub struct Counter {
+    pub authority: Pubkey,
+    pub count: u64,
+    pub bump: u8,
+}
+
+impl Counter {
+    pub const SIZE: usize = 8 + 32 + 8 + 1;
+}
+
+#[error_code]
+pub enum ErrorCode {
+    #[msg("You are not authorized to perform this action.")]
+    Unauthorized,
+}
+```
+
+
+
+用户的调用代码
+
+```rust
+const wallet = pg.wallet;
+const program = pg.program;
+const counterSeed = Buffer.from("counter");
+
+const counterPubkey = await web3.PublicKey.findProgramAddressSync(
+  [counterSeed],
+  pg.PROGRAM_ID
+);
+
+const initializeTx = await pg.program.methods
+  .initialize()
+  .accounts({
+    counter: counterPubkey[0],
+    authority: pg.wallet.publicKey,
+    systemProgram: web3.SystemProgram.programId,
+  })
+  .rpc();
+
+let counterAccount = await program.account.counter.fetch(counterPubkey[0]);
+console.log("account after initializing ==> ", Number(counterAccount.count));
+
+const incrementTx = await pg.program.methods
+  .increment()
+  .accounts({
+    counter: counterPubkey[0],
+    authority: pg.wallet.publicKey,
+  })
+  .rpc();
+
+counterAccount = await program.account.counter.fetch(counterPubkey[0]);
+console.log("account after increasing ==>", Number(counterAccount.count));
+```
+
+
+
+
+
+- nft
+
+使用**Solana CLI** 将网络设置为 **devnet**
+
+```sh
+solana config set --url devnet
+```
+
+确认网络是否设置生效
+
+```sh
+Config File: /Users/anoushkkharangate/.config/solana/cli/config.yml
+RPC URL: https://api.devnet.solana.com
+WebSocket URL: wss://api.devnet.solana.com/ (computed)
+Keypair Path: /Users/anoushkkharangate/.config/solana/id.json
+Commitment: confirmed
+```
+
+**使用 Anchor CLI 来****创建项目**
+
+```sh
+anchor init metaplex_nft
+```
+
+找到Anchor.toml 文件，其中 provider 的网络是否设置为 **devnet**
+
+```rust
+[features]
+seeds = false
+[programs.devnet]
+metaplex_nft = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "/Users/<user-name>/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+```
+
+**项目导入依赖：**
+
+找到 **programs** 的文件夹，转到 programs/metaplex_nft/Cargo.toml 并添加这些依赖项。
+
+```rust
+[dependencies]
+anchor-lang = "0.24.2"
+anchor-spl = "0.24.2"
+mpl-token-metadata = { version = "1.2.5", features = ["no-entrypoint"] }
+```
+
+
+
+```rust
+use anchor_lang::prelude::*;
+use anchor_lang::solana_program::program::invoke;
+use anchor_spl::token;
+use anchor_spl::token::{MintTo, Token};
+use mpl_token_metadata::instruction::{create_master_edition_v3, create_metadata_accounts_v2};
+
+declare_id!("3bfaUxYjL8PhJbCiw9rxjaijdgyUs8cJNGSufPuaPuKu");
+
+#[program]
+pub mod metaplex_nft {
+    use super::*;
+
+    pub fn mint_nft(
+        ctx: Context<MintNFT>,
+        creator_key: Pubkey,
+        uri: String,
+        title: String,
+    ) -> Result<()> {
+        msg!("Initializing Mint Ticket");
+        let cpi_accounts = MintTo {
+            mint: ctx.accounts.mint.to_account_info(),
+            to: ctx.accounts.token_account.to_account_info(),
+            authority: ctx.accounts.payer.to_account_info(),
+        };
+        msg!("CPI Accounts Assigned");
+        let cpi_program = ctx.accounts.token_program.to_account_info();
+        msg!("CPI Program Assigned");
+        let cpi_ctx = CpiContext::new(cpi_program, cpi_accounts);
+        msg!("CPI Context Assigned");
+        token::mint_to(cpi_ctx, 1)?;
+        msg!("Token Minted !!!");
+        let account_info = vec![
+            ctx.accounts.metadata.to_account_info(),
+            ctx.accounts.mint.to_account_info(),
+            ctx.accounts.mint_authority.to_account_info(),
+            ctx.accounts.payer.to_account_info(),
+            ctx.accounts.token_metadata_program.to_account_info(),
+            ctx.accounts.token_program.to_account_info(),
+            ctx.accounts.system_program.to_account_info(),
+            ctx.accounts.rent.to_account_info(),
+        ];
+        msg!("Account Info Assigned");
+        let creator = vec![
+            mpl_token_metadata::state::Creator {
+                address: creator_key,
+                verified: false,
+                share: 100,
+            },
+            mpl_token_metadata::state::Creator {
+                address: ctx.accounts.mint_authority.key(),
+                verified: false,
+                share: 0,
+            },
+        ];
+        msg!("Creator Assigned");
+        let symbol = std::string::ToString::to_string("symb");
+        invoke(
+            &create_metadata_accounts_v2(
+                ctx.accounts.token_metadata_program.key(),
+                ctx.accounts.metadata.key(),
+                ctx.accounts.mint.key(),
+                ctx.accounts.mint_authority.key(),
+                ctx.accounts.payer.key(),
+                ctx.accounts.payer.key(),
+                title,
+                symbol,
+                uri,
+                Some(creator),
+                1,
+                true,
+                false,
+                None,
+                None,
+            ),
+            account_info.as_slice(),
+        )?;
+        msg!("Metadata Account Created !!!");
+        let master_edition_infos = vec![
+            ctx.accounts.master_edition.to_account_info(),
+            ctx.accounts.mint.to_account_info(),
+            ctx.accounts.mint_authority.to_account_info(),
+            ctx.accounts.payer.to_account_info(),
+            ctx.accounts.metadata.to_account_info(),
+            ctx.accounts.token_metadata_program.to_account_info(),
+            ctx.accounts.token_program.to_account_info(),
+            ctx.accounts.system_program.to_account_info(),
+            ctx.accounts.rent.to_account_info(),
+        ];
+        msg!("Master Edition Account Infos Assigned");
+        invoke(
+            &create_master_edition_v3(
+                ctx.accounts.token_metadata_program.key(),
+                ctx.accounts.master_edition.key(),
+                ctx.accounts.mint.key(),
+                ctx.accounts.payer.key(),
+                ctx.accounts.mint_authority.key(),
+                ctx.accounts.metadata.key(),
+                ctx.accounts.payer.key(),
+                Some(0),
+            ),
+            master_edition_infos.as_slice(),
+        )?;
+        msg!("Master Edition Nft Minted !!!");
+
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct MintNFT<'info> {
+    #[account(mut)]
+    pub mint_authority: Signer<'info>,
+
+    /// CHECK: This is not dangerous because we don't read or write from this account
+    #[account(mut)]
+    pub mint: UncheckedAccount<'info>,
+    // #[account(mut)]
+    pub token_program: Program<'info, Token>,
+    /// CHECK: This is not dangerous because we don't read or write from this account
+    #[account(mut)]
+    pub metadata: UncheckedAccount<'info>,
+    /// CHECK: This is not dangerous because we don't read or write from this account
+    #[account(mut)]
+    pub token_account: UncheckedAccount<'info>,
+    /// CHECK: This is not dangerous because we don't read or write from this account
+    pub token_metadata_program: UncheckedAccount<'info>,
+    /// CHECK: This is not dangerous because we don't read or write from this account
+    #[account(mut)]
+    pub payer: AccountInfo<'info>,
+    pub system_program: Program<'info, System>,
+    /// CHECK: This is not dangerous because we don't read or write from this account
+    pub rent: AccountInfo<'info>,
+    /// CHECK: This is not dangerous because we don't read or write from this account
+    #[account(mut)]
+    pub master_edition: UncheckedAccount<'info>,
+}
+```
+
+**构建并部署程序**
+
+运行 anchor build && anchor deploy ，您应该会看到已部署的 **Program ID**
+
+将 **Program ID** 粘贴到 Anchor.toml 和 lib.rs 文件中的临时 ID。
+
+
+
+**导入调用 Solana 程序并铸造 NFT 的代码**
+
+在您的项目中，找到 **tests** 的文件夹，转到 tests/metaplex_nft.ts 并粘贴下面的代码：
+
+
+
+```ts
+import * as anchor from '@project-serum/anchor'
+import { Program, Wallet } from '@project-serum/anchor'
+import { MetaplexAnchorNft } from '../target/types/metaplex_nft'
+import { TOKEN_PROGRAM_ID, createAssociatedTokenAccountInstruction, getAssociatedTokenAddress, createInitializeMintInstruction, MINT_SIZE } from '@solana/spl-token' // IGNORE THESE ERRORS IF ANY
+const { SystemProgram } = anchor.web3
+
+describe('metaplex_nft', () => {
+  // Configure the client to use the local cluster.
+  const provider = anchor.AnchorProvider.env();
+  const wallet = provider.wallet as Wallet;
+  anchor.setProvider(provider);
+  const program = anchor.workspace.MetaplexAnchorNft as Program<MetaplexAnchorNft>
+
+  it("Is initialized!", async () => {
+    // Add your test here.
+
+    const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey(
+      "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+    );
+    const lamports: number =
+      await program.provider.connection.getMinimumBalanceForRentExemption(
+        MINT_SIZE
+      );
+    const getMetadata = async (
+      mint: anchor.web3.PublicKey
+    ): Promise<anchor.web3.PublicKey> => {
+      return (
+        await anchor.web3.PublicKey.findProgramAddress(
+          [
+            Buffer.from("metadata"),
+            TOKEN_METADATA_PROGRAM_ID.toBuffer(),
+            mint.toBuffer(),
+          ],
+          TOKEN_METADATA_PROGRAM_ID
+        )
+      )[0];
+    };
+
+    const getMasterEdition = async (
+      mint: anchor.web3.PublicKey
+    ): Promise<anchor.web3.PublicKey> => {
+      return (
+        await anchor.web3.PublicKey.findProgramAddress(
+          [
+            Buffer.from("metadata"),
+            TOKEN_METADATA_PROGRAM_ID.toBuffer(),
+            mint.toBuffer(),
+            Buffer.from("edition"),
+          ],
+          TOKEN_METADATA_PROGRAM_ID
+        )
+      )[0];
+    };
+
+    const mintKey: anchor.web3.Keypair = anchor.web3.Keypair.generate();
+    const NftTokenAccount = await getAssociatedTokenAddress(
+      mintKey.publicKey,
+      wallet.publicKey
+    );
+    console.log("NFT Account: ", NftTokenAccount.toBase58());
+
+    const mint_tx = new anchor.web3.Transaction().add(
+      anchor.web3.SystemProgram.createAccount({
+        fromPubkey: wallet.publicKey,
+        newAccountPubkey: mintKey.publicKey,
+        space: MINT_SIZE,
+        programId: TOKEN_PROGRAM_ID,
+        lamports,
+      }),
+      createInitializeMintInstruction(
+        mintKey.publicKey,
+        0,
+        wallet.publicKey,
+        wallet.publicKey
+      ),
+      createAssociatedTokenAccountInstruction(
+        wallet.publicKey,
+        NftTokenAccount,
+        wallet.publicKey,
+        mintKey.publicKey
+      )
+    );
+
+    const res = await program.provider.sendAndConfirm(mint_tx, [mintKey]);
+    console.log(
+      await program.provider.connection.getParsedAccountInfo(mintKey.publicKey)
+    );
+
+    console.log("Account: ", res);
+    console.log("Mint key: ", mintKey.publicKey.toString());
+    console.log("User: ", wallet.publicKey.toString());
+
+    const metadataAddress = await getMetadata(mintKey.publicKey);
+    const masterEdition = await getMasterEdition(mintKey.publicKey);
+
+    console.log("Metadata address: ", metadataAddress.toBase58());
+    console.log("MasterEdition: ", masterEdition.toBase58());
+
+    const tx = await program.methods.mintNft(
+      mintKey.publicKey,
+      "https://arweave.net/y5e5DJsiwH0s_ayfMwYk-SnrZtVZzHLQDSTZ5dNRUHA",
+      "NFT Title",
+    )
+      .accounts({
+        mintAuthority: wallet.publicKey,
+        mint: mintKey.publicKey,
+        tokenAccount: NftTokenAccount,
+        tokenProgram: TOKEN_PROGRAM_ID,
+        metadata: metadataAddress,
+        tokenMetadataProgram: TOKEN_METADATA_PROGRAM_ID,
+        payer: wallet.publicKey,
+        systemProgram: SystemProgram.programId,
+        rent: anchor.web3.SYSVAR_RENT_PUBKEY,
+        masterEdition: masterEdition,
+      },
+      )
+      .rpc();
+    console.log("Your transaction signature", tx);
+  });
+});
+```
+
+
+
+运行 `anchor test`，铸造NFT
+
+```bash
+1Account:  4swRFMNovHCkXY3gDgAGBXZwpfFuVyxWpWsgXqbYvoZG1M63nZHxyPRm7KTqAjSdTpHn2ivyPr6jQfxeLsB6a1nX
+2Mint key:  DehGx61vZPYNaMWm9KYdP91UYXXLu1XKoc2CCu3NZFNb
+3User:  7CtWnYdTNBb3P9eViqSZKUekjcKnMcaasSMC7NbTVKuE
+4Metadata address:  7ut8YMzGqZAXvRDro8jLKkPnUccdeQxsfzNv1hjzc3Bo
+5MasterEdition:  Au76v2ZDnWSLj23TCu9NRVEYWrbVUq6DAGNnCuALaN6o
+6Your transaction signature KwEst87H3dZ5GwQ5CDL1JtiRKwcXJKNzyvQShaTLiGxz4HQGsDA7EW6rrhqwbJ2TqQFRWzZFvhfBU1CpyYH7WhH
+7    ✔ Is initialized! (6950ms)
+8
+9
+10  1 passing (7s)
+11
+12✨  Done in 9.22s.
+```
+
+**查看 NFT**
+
+用前面铸造完成输出的 Mint key 替换掉下面链接的 **Token**，打开链接即可查看：
+
+https://solscan.io/token/DehGx61vZPYNaMWm9KYdP91UYXXLu1XKoc2CCu3NZFNb?cluster=devnet
