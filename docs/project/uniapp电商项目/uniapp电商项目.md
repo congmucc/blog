@@ -1,6 +1,6 @@
 # 0 项目搭建
 
-项目地址：[congmucc/uni-ts-shop: 这是uniapp+ts的小鲜兔商城前端开发 (github.com)](https://github.com/congmucc/uni-ts-shop)
+项目地址：~~[congmucc/uni-ts-shop: 这是uniapp+ts的商城前端开发 (github.com)已删除](https://github.com/congmucc/uni-ts-shop)~~
 
 # 1 项目笔记
 

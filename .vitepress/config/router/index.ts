@@ -3,13 +3,13 @@ const route = [
         text: "项目笔记",
         collapsed: false,
         items: [
-          { text: "航天宏图", link: "/project/航天宏图/航天宏图" },
+          { text: "宏图", link: "/project/宏图/宏图" },
           { text: "闻讯头条", link: "/project/闻讯头条/闻讯头条" },
           {
             text: "uniapp电商项目",
             link: "/project/uniapp电商项目/uniapp电商项目",
           },
-          { text: "苍穹外卖", link: "/project/苍穹外卖" },
+          { text: "外卖项目", link: "/project/外卖项目" },
           { text: "前端项目笔记", link: "/project/前端项目笔记/前端项目笔记" },
           { text: "钱包项目", link: "/project/WEB3/钱包项目/钱包项目" },
         ],
