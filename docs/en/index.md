@@ -17,8 +17,8 @@ hero:
 features:
   - title: "Start"
     details: "Access my learning notes and blog usage guide through Start."
-  - title: "Personal Introduction"
-    details: "Learn more about me and find additional information."
+  - title: "⚠️Notice"
+    details: This blog has not been updated for a long time. It is only used as a navigation. For more information, please click the github warehouse in the upper right corner.
   - title: LANGUAGE
     details: Currently, only the "Getting Started" and "Introduction" sections are available in English. The rest of the notes are not supported at this time. Apologies for the inconvenience.
 ---
