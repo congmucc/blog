@@ -7,6 +7,7 @@ import route from "./config/router";
 export default defineConfig({
   title: "从木的blog",
   description: "congmu blog",
+  base:"/blog/",
   // 资源目录
   srcDir: "./docs",
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
