@@ -19,6 +19,8 @@ yarn build
 > 打包目录为.vitpress/dist
 
 
+> 这里注意，如果使用github pages的话需要添加相应的`blog/.vitepress/config.mts`的`base`属性为`/blog/`（这个看项目名称，是哪个改哪个），如果使用云服务器部署的话就不必要。
+> 详情请看 `https://vitepress.dev/guide/deploy#setting-a-public-base-path`
 
 nginx配置目录，记得需要先下载nginx容器
 
