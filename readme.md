@@ -5,7 +5,7 @@
 ### 安装依赖
 
 ```
-pnpm install
+yarn install
 ```
 
 
@@ -13,7 +13,7 @@ pnpm install
 ### 打包
 
 ```
-pnpm build
+yarn build
 ```
 
 > 打包目录为.vitpress/dist
