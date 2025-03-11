@@ -8,6 +8,9 @@
     "preview": "vitepress preview"
   },
   "dependencies": {
-    "vuepress-plugin-dehydrate": "^1.1.5"
+    "vuepress-plugin-dehydrate": "^1.1.5",
+    "@algolia/client-search": "5.20.4",
+    "algoliasearch": "5.20.4",
+    "search-insights": "^2.2.1"
   }
 }
