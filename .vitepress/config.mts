@@ -5,8 +5,8 @@ import route from "./config/router";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "从木的blog",
-  description: "congmu blog",
+  title: "Eason の Blog",
+  description: "Eason の blog",
   // base:"/blog/",
   // 资源目录
   srcDir: "./docs",

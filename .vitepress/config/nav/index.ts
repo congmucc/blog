@@ -5,6 +5,10 @@ export const navLinks = [
   {
     text: "项目笔记",
     items: [
+      { text: "AMM做市商系统", link: "/project/WEB3/amm/amm" },
+      { text: "钱包项目", link: "/project/WEB3/钱包项目/钱包项目" },
+      { text: "轮盘游戏", link: "/project/WEB3/lottery/lottery" },
+      { text: "SUI合约开发", link: "/project/WEB3/sui/sui" },
       { text: "宏图", link: "/project/宏图/宏图" },
       { text: "闻讯头条", link: "/project/闻讯头条/闻讯头条" },
       {
@@ -13,7 +17,6 @@ export const navLinks = [
       },
       { text: "外卖项目", link: "/project/外卖项目" },
       { text: "前端项目笔记", link: "/project/前端项目笔记/前端项目笔记" },
-      { text: "钱包项目", link: "/project/WEB3/钱包项目/钱包项目" },
     ],
   },
   {

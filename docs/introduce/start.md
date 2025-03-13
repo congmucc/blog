@@ -11,12 +11,43 @@
 :::
 
 
+---
 
 # 项目介绍：
 
 ## WEB3项目
+- [基于Anchor的AMM做市商系统](https://github.com/congmucc/anchor-spl-amm)
+> 该项目是基于Anchor框架实现了一个简易版的AMM市商系统，完成了基本的Swap，目前正在迭代。
+> 技术栈: Anchor + SPL Token
+> 项目职责：
+> - 基于 Anchor 框架设计并开发 AMM 系统核心模块，包括流动性池创建、代币交换和流动性管理。
+> - 实现池中资产比例自动调整机制，优化交易滑点和收益分配。
+> - 开发基于 SPL Token 的代币交换逻辑，支持精准代币兑换。
+> - 编写全面的单元测试和集成测试，覆盖流动性管理、代币交换及边界条件。
+
+
+- [轮盘游戏foundry-lottery](https://github.com/congmucc/foundry-lottery)
+> 该项目是基于Foundry框架的一个轮盘游戏，用户可以参与这个游戏进行投注，轮盘利用链上事件（Chainlink Automation+VRF）触发定时结算机制，其中用户可以使用USDT，USDC，ETH进行参与抽奖。
+> 技术栈: Foundry + Openzeppelin + Golang
+> 项目职责：
+> - 使用 Foundry 框架开发链上轮盘游戏的智能合约，设计游戏逻辑，包括用户投注、轮盘转动及自动结算功能。
+> - 集成 OpenZeppelin 合约库，实现代币支付支持（USDT、USDC、ETH），并确保智能合约符合 ERC-20标准。
+> - 设计和开发智能合约的安全性机制，包括访问权限控制、防重入攻击和资金池安全管理。
+> - 使用 Golang 实现智能合约的调用与交互。
+
+- [SUI合约开发](https://github.com/congmucc/letsmove/tree/main/mover/congmucc)
+> 该项目包括编写基本的共享型和非共享型Coin（NFT）合约，以及Coin型的Swap合约。
+> 技术栈: SUI & Move
+> 项目职责：
+> - 编写基本的共享型和非共享型Coin（NFT）合约。
+> - Coin型的Swap合约。
+> - 使用TypeScript进行交互合约和监听。
+
+
+
 - [钱包项目](../project/WEB3/钱包项目/钱包项目.md)
 > 该项目是基于ERC20协议的一个仿MateMask的账户系统，用户在测试网如Sepolia的环境中，由本系统进行由管理员颁发的新币进行转账，查看信息等操作。
+
 
 ## 后端项目：
 - [闻讯头条（微服务 + ES + Kafka）](../project/闻讯头条/闻讯头条.md)
@@ -38,7 +69,7 @@
 > - 使用DevOps自动化部署进行部署，结合Jenkins进行简单的自动化部署。
 >
 
-- [苍穹外卖（maven聚合的单体项目）](../project/苍穹外卖.md)
+- [外卖（maven聚合的单体项目）](../project/外卖项目.md)
 > 这个项目的亮点是具有aop切面思想和具有微信支付的业务，主要技术是Java
 
 
@@ -56,29 +87,8 @@ Github地址为：[note/02-Code/基础/后端 at main · congmucc/note (github.c
 - [前端项目笔记（后台管理系统，包含数据大屏）](../project/前端项目笔记/前端项目笔记.md)
 > 项目是Vue前端的一个后台管理模板的一个脚手架，着重项目的格式如Eslint，husky，commitlint，以及原生数据大屏的搭建。技术栈有Vue+TypeScripts+Echarts
 
-- [vue3大事件总结](https://github.com/congmucc/note/blob/main/02-Code/%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/Java%2BVue/vue3%E5%A4%A7%E4%BA%8B%E4%BB%B6%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93.md)
-> 这是一个Vue的文章项目，使用JavaScript编写，主要是练习语法和Element-plus的使用
 
-- **党务修改**
-> 这个是学校的项目，用于统计班内团员和积极分子等信息。<br>
-> **技术栈**：<br>
-> - 前端：Vue3 + JavaScript + pinia + vue-router
-> - 后端：Spring Boot 2 + Spring Task + JWT + MyBatis<br>
-**项目职责**：<br>
-> - 基于动态sql实现学生信息的条件查询功能，并进行分表处理。
-> - 对身份证、手机号等私密信息进行hash加密处理
-> - 设计登录限制策略，如连续三次登录失败禁止登录、使用springtask定时任务对学生登录时间进行定时控制。
 
-- **助业宝**
-> 该项目是为解决大学生就业困难而设计的创新创业项目，包含高校端、政府企业端、学生端模块。本人负责机构端开发，以及h5端与后端联调。<br>
-**技术栈**：<br>
-> - UniApp + TypeScript（小程序端）
-> - Vue3.2 + TypeScript + pinia + vue-router + pure admin（H5端）
-> - Spring Boot 3 + JWT + MyBatis<br>
-**项目职责**：<br>
-> - 重构小程序端为 H5 端
-> - 设计并实现uniapp端提交证明的多文件上传表单
-> - 参与前后端联调，基于项目设计简化版动态路由和管理机构多角色登录。
 
 
 ::: info
