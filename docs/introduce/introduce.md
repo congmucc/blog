@@ -4,6 +4,21 @@
 
 # 个人信息
 
+<h4 align="center">
+  <strong>
+    <samp>
+      I am <em>Eason</em>. I am a Blockchain developer... 
+      <br/> Ethereum Solana Sui Ton lover.
+      <br/> Rust Golang Typescript Python lover.
+    </samp>
+  </strong>
+</h4>
+
+
+[My Resume](../public/Eason-区块链后端工程师.pdf)
+
+
+
 ## 学习记录
 个人的学习记录一般是：
 - Github含有我的项目和所有笔记，以下是我的github的提交记录。
