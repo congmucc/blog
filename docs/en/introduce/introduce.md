@@ -4,6 +4,21 @@ This is a personal study notes forum, maintained irregularly.
 
 # Personal Information
 
+
+<h4 align="center">
+  <strong>
+    <samp>
+      I am <em>Eason</em>. I am a Blockchain developer... 
+      <br/> Ethereum Solana Sui Ton lover.
+      <br/> Rust Golang Typescript Python lover.
+    </samp>
+  </strong>
+</h4>
+
+
+[My Resume](/Eason-BlockchainResume.pdf)
+
+
 ## Study Records
 My personal study records are generally:
 - Github contains my code and all my notes, as shown in my GitHub commit history.
