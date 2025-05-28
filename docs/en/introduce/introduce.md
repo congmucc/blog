@@ -52,7 +52,7 @@ This is my personal learning note and portfolio, covering key topics in blockcha
 - [📘 Stack Overflow](https://stackoverflow.com/users/23485085/congmu): Active contributor in the dev Q&A community
 
 ### 🗂 Commit Preview
-![GitHub Commit Preview](../assets/github.png)
+![GitHub Commit Preview](../../assets/github.png)
 
 ---
 
