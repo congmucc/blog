@@ -15,7 +15,7 @@
 </h4>
 
 
-[My Resume](../public/Eason-区块链后端工程师.pdf)
+[My Resume](/Eason-区块链后端工程师.pdf)
 
 
 
