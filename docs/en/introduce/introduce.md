@@ -66,7 +66,7 @@ This is my personal learning note and portfolio, covering key topics in blockcha
 - **Blockchain Recharge System**: Supported multiple tokens (USDT, USDC, SOL, TON), using HD-wallet-like mechanism to generate unique addresses  
 - **Security & Identity Auth**: Integrated TOTP + Google Authenticator for unified login across chains and wallet aggregation
 
-### PIESAT Information Technology Co., Ltd. (2024.05 – 2024.08)｜Backend Engineer｜Nanjing
+### PIESAT Information Technology Co., Ltd. (2024.05 – 2024.08)｜Backend Engineer｜ShangHai
 
 - **High-volume API Sync & Data Cleansing**: Designed efficient pipelines and cleaning logic, removing tens of thousands of dirty records  
 - **System Architecture Design**: Participated in RBAC-based permission system, logging system, SSO client integration and deployment  
