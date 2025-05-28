@@ -1,66 +1,82 @@
-# Introduction
 
-This is a personal study notes forum, maintained irregularly.
 
-# Personal Information
+# Personal Introduction
 
+This is my personal learning note and portfolio, covering key topics in blockchain development and backend engineering. Continuously updated.
+
+---
+
+## 📌 About Me
 
 <h4 align="center">
   <strong>
     <samp>
-      I am <em>Eason</em>. I am a Blockchain developer... 
-      <br/> Ethereum Solana Sui Ton lover.
-      <br/> Rust Golang Typescript Python lover.
+      Hi, I'm <em>Eason</em> 👋<br/>
+      Blockchain Developer | Backend Engineer<br/>
+      Ethereum · Solana · Sui · Ton Enthusiast<br/>
+      Rust · Golang · TypeScript · Python Developer
     </samp>
   </strong>
 </h4>
 
+[📄 View My PDF Resume](/Eason-BlockchainResume.pdf)
 
-[My Resume](/Eason-BlockchainResume.pdf)
+---
 
+## 🚀 Tech Stack
 
-## Study Records
-My personal study records are generally:
-- Github contains my code and all my notes, as shown in my GitHub commit history.
+### Web3
+- Solidity / Rust / Move  
+- Multi-chain development: Ethereum, Solana, Sui, Ton, Base  
+- Frameworks & Tools: Anchor, Foundry  
+- Ecosystem Tools: The Graph, Alchemy, Chainlink, Switchboard, Pyth
 
-![alt text](../../assets/github.png)
+### Backend Development
+- Languages: Golang, Java, TypeScript, Python  
+- Frameworks: Gin, Gorm, GoZero, SpringBoot, SpringCloud, NestJS  
+- Microservices & Middleware: Kafka, RabbitMQ, ElasticSearch, Etcd, Consul, XXL-Job  
+- Security & Auth: OAuth2, 2FA
 
-- CSDN has the problems and solutions I encounter in my projects.
-- For details, please click on the **small icon in the upper right corner** for my [Github](https://github.com/congmucc/note) and [CSDN](https://blog.csdn.net/m0_73419038?type=blog) and [stackoverflow](https://stackoverflow.com/users/23485085/congmu).
+### DevOps & Databases
+- Linux basics, deployment & troubleshooting  
+- Databases: MySQL, PostgreSQL, Redis  
+- CICD & DevOps: Git, Docker, K8s, Nginx, Jenkins, Harbor
 
-## Tech Stack
-### WEB3
-- Solidity
-- Move
-> Frameworks
-- Anchor
-- Foundry
+---
 
-### Backend
-- Golang
-- Rust
-- Python
-- TypeScript
-- Java
+## 🧠 Learning Notes
 
-### Frontend
-- React
+### 🔗 Platforms
+- [📘 GitHub](https://github.com/congmucc/note): Project & note repo, continuously updated  
+- [📘 CSDN](https://blog.csdn.net/m0_73419038?type=blog): Troubleshooting & practice notes  
+- [📘 Stack Overflow](https://stackoverflow.com/users/23485085/congmu): Active contributor in the dev Q&A community
 
-### SQL
-- MySQL
-- Redis
-- PostgreSQL
+### 🗂 Commit Preview
+![GitHub Commit Preview](../assets/github.png)
 
-### Others
-- CICD (Jenkins, Docker, K8s, Harbor)
-- Linux
-- Git
+---
 
-::: info
-Here, languages are the only dividing lines. For example, Golang includes but is not limited to the Golang ecosystem, such as the rpc framework grpc, the microservice framework Go-Zero, the contract interaction framework Geth, the sql framework Gorm, the network framework Gin, etc.
+## 💼 Work Experience
 
-There are also frameworks like:
-**The Graph, Alchemy, Pyth, Switchboard, Chainlink**
-<br>
-ElasticSearch, RabbitMQ, Kafka;
-:::
+### MOBIUS ONE PTE. LTD (2024.10 – Present)｜Solana Contract Backend Engineer｜Remote
+
+- **Modular Contract Refactoring**: Refactored betting / drawing / settlement modules with Anchor framework to improve reusability and maintainability  
+- **Multi-Chain Integration & On-Chain Parsing**: Integrated Solana, TON, SUI, Base, Arbitrum and implemented real-time Tick-level data parsing and storage  
+- **Auto-Betting with State Machine**: Designed strategy-based betting state machine for off-chain logic judgment and on-chain execution, with auto reward distribution  
+- **Blockchain Recharge System**: Supported multiple tokens (USDT, USDC, SOL, TON), using HD-wallet-like mechanism to generate unique addresses  
+- **Security & Identity Auth**: Integrated TOTP + Google Authenticator for unified login across chains and wallet aggregation
+
+### PIESAT Information Technology Co., Ltd. (2024.05 – 2024.08)｜Backend Engineer｜Nanjing
+
+- **High-volume API Sync & Data Cleansing**: Designed efficient pipelines and cleaning logic, removing tens of thousands of dirty records  
+- **System Architecture Design**: Participated in RBAC-based permission system, logging system, SSO client integration and deployment  
+- **Server Ops & Deployment**: Assisted with K8s node ops, Docker image uploads, fault diagnosis and system rollout  
+- **Interface Development**: Designed and implemented complex B-end APIs for high-concurrency scenarios  
+- **Agile Dev & Client Communication**: Participated in multiple iterations and requirement meetings to ensure timely feature delivery
+
+---
+
+## 📚 Open Source Contribution
+
+- Contributed PRs to blockchain ecosystem repos such as `solana-anchor-go`, `sui-go-sdk`
+
