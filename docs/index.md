@@ -18,7 +18,7 @@ features:
   - title: 开始
     details: 通过开始可以进行查看我的学习笔记以及本博客的使用方法
   - title: ⚠️注意
-    details: 本博客随缘更新，目前仅作为一个为新人引导的一个博客，想了解更多请点击右上角的github仓库。
+    details: 本博客随缘更新，目前仅作为一个为引导的一个博客，想了解更多请点击右上角的github仓库。
   - title: LANGUAGE
     details: Currently, only the "Getting Started" and "Introduction" sections are available in English. The rest of the notes are not supported at this time. Apologies for u.
 ---
